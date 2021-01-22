@@ -23,7 +23,7 @@
 <update id="updateBook">
 		UPDATE book
 		SET book_picture = #{book_picture}
-			, book_name = #{book_name}
+			, book_name = UPPER(#{book_name})
 			, book_writer = #{book_writer}
 			, book_price = #{book_price}
 			, book_info = #{book_info}

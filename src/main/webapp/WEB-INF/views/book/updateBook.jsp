@@ -9,13 +9,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>책 등록 페이지</title>
+<title>책 수정페이지</title>
 </head>
 <body>
 	${bvo.book_num}
 	<div class = container style="margin : auto; width:700px; align : center">
 		<form action ="${path}/book/updateBook.do" method = "post" enctype="multipart/form-data">
-		<input  type = "hidden" name = "book_name" value ="${bvo.book_name}">
 		<input  type = "hidden" name = "page" value ="${supPaging.page}">
 		<input  type = "hidden" name = "perPageNum" value ="${supPaging.perPageNum}">
 		<input  type = "hidden" name = "book_num" value ="${bvo.book_num}"> 

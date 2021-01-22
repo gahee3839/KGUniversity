@@ -53,7 +53,7 @@ public class BookController {
 		String book_picture = "";
 		if(!book_file.isEmpty()) {
 			book_picture = book_file.getOriginalFilename();
-			String savepoint ="C:\\Users\\pc\\Desktop\\KG_University\\src\\main\\webapp\\resources\\img";
+			String savepoint ="C:\\Users\\pc\\Desktop\\KGUniversity\\KGUniversity\\src\\main\\webapp\\resources\\img";
 			File save = new File(savepoint,book_file.getOriginalFilename());
 			book_file.transferTo(save);
 		}
@@ -108,7 +108,7 @@ public class BookController {
 			, @ModelAttribute("bvo") BookVO bvo,SupPaging supPaging) throws Exception {
 		logger.info("수정처리..");
 		String book_picture = "";
-		String savepoint ="C:\\Users\\pc\\Desktop\\KG_University\\src\\main\\webapp\\resources\\img";
+		String savepoint ="C:\\Users\\pc\\Desktop\\KGUniversity\\KGUniversity\\src\\main\\webapp\\resources\\img";
 		int book_num = (int) Integer.parseInt(hashMap.get("book_num"));
 		System.out.println();
 		BookVO bvo2 = bookService.getBookInfoN(book_num);
@@ -127,6 +127,7 @@ public class BookController {
 		}
 		System.out.println(book_picture);
 		String book_name = (String) hashMap.get("book_name");
+		System.out.println(book_name);
 		String book_writer = (String) hashMap.get("book_writer");
 		int book_price = (int) Integer.parseInt(hashMap.get("book_price"));
 		String book_info = (String) hashMap.get("book_info");
@@ -193,14 +194,12 @@ public class BookController {
 	
 	//전체 구매 목록
 	@RequestMapping(value = "/purchaseList.do", method = RequestMethod.GET)
-	public String PurchaseAll(@RequestParam("user_id") String user_id, PurPaging purPaging, Model model) throws Exception {
-				System.out.println(user_id);
+	public String PurchaseAll(PurPaging purPaging, Model model) throws Exception {
 				PageMaker pageMaker = new PageMaker();
 				pageMaker.setPurPaging(purPaging);
 				pageMaker.setTotalCountP(bookService.countPurchase(purPaging));
 				model.addAttribute("pageMaker", pageMaker);
 				model.addAttribute("pvo", bookService.purPaging(purPaging));
-				model.addAttribute("user_id", user_id);
 		return "/book/purchaseList";
 	}
 	

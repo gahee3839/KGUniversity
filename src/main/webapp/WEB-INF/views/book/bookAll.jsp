@@ -12,6 +12,12 @@
 <title>책 판매 목록</title>
 </head>
 <body>
+
+<form action = "purchaseList.do" methode = "get">
+	<input type="hidden" name = "user_id" value = "user_id">
+	<input type="submit" value="구입목록">
+</form>
+
 <form action = "search.do" method="get">
 <select name = "searchType" id = "searchType">
 	<option value = "book_name" <c:out value = "${search.searchType eq 'book_title' ? 'selected' : ''}"/>>책 제목</option>

@@ -1,3 +1,4 @@
+<%@page import="java.awt.print.Printable"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -19,17 +20,15 @@ ${purchase.purchase_date}<br>
 </c:forEach>
 
 <br><br>
-	
-	<c:if test="${pageMaker.prev}">
-		<a href="${path}/book/purchaseList.do?page=${pageMaker.startPage-1}">이전</a>
+<c:if test="${pageMaker.prev}">
+		<a href="${path}/book/userPurchase.do${pageMaker.makeUserPurchase(pageMaker.startPage-1)}">이전</a>
      </c:if>
 	 <c:forEach begin="${pageMaker.startPage}" end ="${pageMaker.endPage}" var ="idx">
 		<c:out value ="${pageMaker.purPaging.page == idx ? '' : ''}"/>
-		<a href="${path}/book/purchaseList.do${pageMaker.makePurchase(idx)}">${idx}</a>
+		<a href="${path}/book/userPurchase.do${pageMaker.makeUserPurchase(idx)}">${idx}</a>
 	</c:forEach>
 	<c:if test="${pageMaker.next && pageMaker.endPage >0}">
-		<a href ="${path}/book/purchaseList.do?page=${pageMaker.endPage+1}">다음</a>
+		<a href ="${path}/book/userPurchase.do${pageMaker.makeUserPurchase(pageMaker.endPage+1)}">다음</a>
 	</c:if>
-	
 </body>
 </html>

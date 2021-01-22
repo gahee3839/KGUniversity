@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kgu.www.mapper.Book.BookMapper">
+<mapper namespace="com.kgu.www.mapper.BookMapper">
 
 <insert id="bookInsertForm">
 		INSERT INTO  book 
@@ -115,13 +115,6 @@
 		INSERT INTO book_purchase  
      	VALUES (purchase_num_seq.NEXTVAL, #{user_id}, #{book_picture}, #{book_name}, #{book_amount}, sysdate)
 </insert>
-
-<select id ="purchaseList" resultType = "PurchaseVO">
-		SELECT purchase_num, user_id, book_picture, book_name, book_amount, purchase_date 
-		FROM book_purchase
-		WHERE purchase_num > 0 AND user_id = #{user_id}
-		ORDER BY purchase_num DESC
-</select>
 
 <select id="purPaging" resultType = "PurchaseVO">
 		SELECT * FROM (

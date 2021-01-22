@@ -53,7 +53,7 @@ public class BookController {
 		String book_picture = "";
 		if(!book_file.isEmpty()) {
 			book_picture = book_file.getOriginalFilename();
-			String savepoint ="E:\\ITbank\\WEB_DEVELOPER\\PROJECT\\final\\img";
+			String savepoint ="C:\\Users\\pc\\Desktop\\KG_University\\src\\main\\webapp\\resources\\img";
 			File save = new File(savepoint,book_file.getOriginalFilename());
 			book_file.transferTo(save);
 		}
@@ -108,7 +108,7 @@ public class BookController {
 			, @ModelAttribute("bvo") BookVO bvo,SupPaging supPaging) throws Exception {
 		logger.info("수정처리..");
 		String book_picture = "";
-		String savepoint ="E:\\ITbank\\WEB_DEVELOPER\\PROJECT\\final\\img";
+		String savepoint ="C:\\Users\\pc\\Desktop\\KG_University\\src\\main\\webapp\\resources\\img";
 		int book_num = (int) Integer.parseInt(hashMap.get("book_num"));
 		System.out.println();
 		BookVO bvo2 = bookService.getBookInfoN(book_num);
@@ -191,15 +191,30 @@ public class BookController {
 		return "/book/bookAll";
 	}
 	
+	//전체 구매 목록
 	@RequestMapping(value = "/purchaseList.do", method = RequestMethod.GET)
-	public String userPurchase(@ModelAttribute("userPurchase")UserPurchase userPurchase, PurPaging purPaging, Model model) throws Exception {
-			String user_id = "user_id";
+	public String PurchaseAll(@RequestParam("user_id") String user_id, PurPaging purPaging, Model model) throws Exception {
+				System.out.println(user_id);
+				PageMaker pageMaker = new PageMaker();
+				pageMaker.setPurPaging(purPaging);
+				pageMaker.setTotalCountP(bookService.countPurchase(purPaging));
+				model.addAttribute("pageMaker", pageMaker);
+				model.addAttribute("pvo", bookService.purPaging(purPaging));
+				model.addAttribute("user_id", user_id);
+		return "/book/purchaseList";
+	}
+	
+	//유저가 구매한 책 목록
+	@RequestMapping(value = "/userPurchase.do", method = RequestMethod.GET)
+	public String userPurchase(@RequestParam("user_id") String user_id, @ModelAttribute("userPurchase")UserPurchase userPurchase, PurPaging purPaging, Model model) throws Exception {
+			System.out.println(user_id);
 			userPurchase.setUser_id(user_id);
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setPurPaging(userPurchase);
 			pageMaker.setTotalCountP(bookService.countSearchedPurchase(userPurchase));
 			model.addAttribute("pageMaker", pageMaker);
 			model.addAttribute("pvo", bookService.userPurchase(userPurchase));
-		return "/book/purchaseList";
+		return "/book/userPurchase";
+		
 	}
 }

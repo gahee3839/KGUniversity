@@ -132,15 +132,6 @@ public class PageMaker {
 		return uri.toUriString();
 	}
 	
-	public String makeQueryP(int page) {
-		UriComponents uri = UriComponentsBuilder.newInstance()
-				.queryParam("page", page)
-				.queryParam("perPageNum", purPaging.getPerPageNum())
-				.queryParam("user_id", ((UserPurchase) purPaging).getUser_id())
-				.build();
-		return uri.toUriString();
-	}
-	
 	public String makeSearch(int page) {
 		UriComponents uri = UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
@@ -150,6 +141,24 @@ public class PageMaker {
 				.build();
 		return uri.toUriString();
 	}
+	
+	public String makePurchase(int page) {
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum", purPaging.getPerPageNum())
+				.build();
+		return uri.toUriString();
+	}
+	
+	public String makeUserPurchase(int page) {
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum", purPaging.getPerPageNum())
+				.queryParam("user_id", ((UserPurchase) purPaging).getUser_id())
+				.build();
+		return uri.toUriString();
+	}
+	
 	
 	public String encoding(String keyword) {
 		if(keyword == null || keyword.trim().length()==0) {

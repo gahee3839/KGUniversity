@@ -36,19 +36,12 @@ public interface BookDAO {
 	
 	void purchaseInsertForm(PurchaseVO pvo) throws Exception; //구매 등록
 	
-	List<PurchaseVO> purchaseList(String user_id) throws Exception; //구매한 책 목록
+	List<PurchaseVO> purPaging(PurPaging purPaging) throws Exception; //판매한 책 목록 페이징 처리
 	
-	List<PurchaseVO> purPaging(PurPaging purPaging) throws Exception; //구매한 책 목록 페이징 처리
+	int countPurchase(PurPaging purPaging) throws Exception; //판매 총 갯수
 	
 	List<PurchaseVO> userPurchase(UserPurchase userPurchase) throws Exception; //구매한 책 목록 페이징 처리
 	
-	int countSearchedPurchase(UserPurchase userPurchase) throws Exception;
-	
-	int countPurchase(PurPaging purPaging) throws Exception; //구매한 총 갯수
+	int countSearchedPurchase(UserPurchase userPurchase) throws Exception; //유저가 구매한 책 목록
 
-	
-	
-	
-	
-	
 }

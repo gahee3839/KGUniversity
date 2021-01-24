@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -170,8 +171,28 @@ public class BookController {
 		
 	}
 	
+	//결제 처리
+	@RequestMapping(value = "/kakao.do", method = RequestMethod.GET)
+	public String kakao(@RequestParam HashMap<String,String> hashMap, Model model, @ModelAttribute("bvo") BookVO bvo) {
+		int book_num = bvo.getBook_num();
+		String user_id = hashMap.get("user_id");
+		String book_name = bvo.getBook_name();
+		String book_picture = bvo.getBook_picture();
+		int book_inventory = bvo.getBook_inventory();
+		int purchase_amount = Integer.parseInt(hashMap.get("purchase_amount"));
+		int book_price = bvo.getBook_price();
+		model.addAttribute("user_id", user_id);
+		model.addAttribute("book_num", book_num);
+		model.addAttribute("book_name", book_name);
+		model.addAttribute("book_picture", book_picture);
+		model.addAttribute("purchase_amount", purchase_amount);
+		model.addAttribute("book_inventory", book_inventory);
+		model.addAttribute("book_price", book_price);
+		return "/book/kakao";
+	}
+	
 	//구입 처리
-	@RequestMapping(value = "/purchase.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/purchase.do", method = RequestMethod.GET)
 	public String purchaseInsertForm(@RequestParam HashMap<String,String> hashMap,
 			@ModelAttribute("bvo") BookVO bvo,SupPaging supPaging, Model model) throws Exception {
 		String user_id = hashMap.get("user_id");
@@ -218,9 +239,4 @@ public class BookController {
 		return "/book/userPurchase";
 	}
 	
-	@RequestMapping(value = "/kakao.do", method = RequestMethod.POST)
-	public String kakao(@RequestParam HashMap<String,String> hashMap, Model model) {
-		model.addAttribute("hashMap", hashMap);
-		return "/book/kakao";
-	}
 }

@@ -1,127 +1,202 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
-<c:set var="path" value ="${pageContext.request.contextPath}"/>
-<%@ page session="false" %> 
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css"
+	integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn"
+	crossorigin="anonymous">
 <meta charset="UTF-8">
- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
- <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<meta name="viewport" content="width-device-width" initail-scale="1">
 <title>책 상세내용</title>
+<style>
+.grid {
+	width: 500px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 0;
+	position: relative;
+	left: 400px;
+	top: 40px;
+}
+
+.grid_item {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.container2 ul li {
+	display: inline-block;
+	margin: 10px;
+	width: 400px;
+}
+
+div.pic img {
+	width: 200px;
+	height: 200px;
+}
+
+div.book1 {
+	padding: 10px 0;
+	text-align: center;
+}
+
+div.book1 a {
+	color: #000;
+}
+
+.pagination {
+	justify-content: center;
+}
+</style>
 </head>
 <body>
-<p>
-<p>아임 서포트 결제 모듈 테스트 해보기</p>
-<button id="check_module" type="button">아임 서포트 결제 모듈 테스트 해보기</button>
-</p>
+	<jsp:include page="../include/header.jsp" />
+	<br>
+	<br>
 
-<script>
-$("#check_module").click(function() {
-var IMP = window.IMP; // 생략가능
-/* var user_id = $('input[name="user_id"]').val();
-var book_num = $('input[name="book_num"]').val();
-var book_picture = $('input[name="book_picture"]').val();
-var book_name = $('input[name="book_name"]').val();
-var book_inventory = $('input[name="book_inventory"]').val();
-var book_amount = $('input[name="book_amount"]').val(); */
-IMP.init('imp99338921');
-IMP.request_pay({
-pg: 'kakao', // version 1.1.0부터 지원.
-pay_method: 'card',
-merchant_uid: 'merchant_' + new Date().getTime(),
-name: '주문명:결제테스트',
-amount: 1,
-buyer_email: 'iamport@siot.do',
-buyer_name: '구매자이름',
-buyer_tel: '010-1234-5678',
-buyer_addr: '서울특별시 강남구 삼성동',
-buyer_postcode: '123-456',
-}, function (rsp) {
-console.log(rsp);
-if (rsp.success) {
-	var msg = '결제가 완료되었습니다.';
-	msg += '고유ID : ' + rsp.imp_uid;
-	msg += '상점 거래ID : ' + rsp.merchant_uid;
-	msg += '결제 금액 : ' + rsp.paid_amount;
-	msg += '카드 승인번호 : ' + rsp.apply_num;
-	/* jQuery.ajax({
-		url: "http://localhost:8089/www/book/purchase.do",
-		methoed : "POST",
-		headers: { "Content-Type": "application/json" },
-        data: {
-            user_id : "user_id",
-            book_num : "1046",
-            book_picture : "book_picture",
-            book_name : "book_name",
-            book_inventory : "book_inventory",
-            book_amount : "book_amount"
-        }
-    })*/
-} else {
-	var msg = '결제에 실패하였습니다.';
-	msg += '에러내용 : ' + rsp.error_msg;
-}
-alert(msg);
-document.location.href="http://localhost:8089/www/book/bookAll.do";
-});
-</script>
+<div align="center">
 
-<br><br><br><br>
-<img src ="<spring:url value='/resources/img/${bvo.book_picture}'/>"><br>
-${bvo.book_name}<br>
-${bvo.book_writer}<br>
-${bvo.book_price}<br>
-<form action = "book/purchase.do" methoed = "post">
-			<input type = "hidden" name = "user_id" value = "user_id">
-			<input type = "hidden" name = "book_num" value = "${bvo.book_num}">
-			<input type = "hidden" name = "book_picture" value = "${bvo.book_picture}">
-			<input type = "hidden" name = "book_name" value = "${bvo.book_name}">
-			<input type = "hidden" name = "book_inventory" value = "${bvo.book_inventory}">
-	<select name = "purchase_amount">
-		<c:forEach var = "book_amount" begin="1" end = "${bvo.book_inventory}" step = "1" varStatus="a" >
-			<option>${book_amount}</option>
-		</c:forEach>
-	</select>
-	<button type = "button" onclick="check_module()" value = "구매">구매</button>
-</form>
-(재고 : ${bvo.book_inventory})<br>
+		<div class="container1">
+			<div class="pic"><!-- 책 사진 -->
+				<img src="<spring:url value='/resources/img/${List.book_picture}'/>">
+			</div>
+		</div>
+	<br>
+		<div class="book1"> <!-- 책 명 -->
+			<h5>[책 제목] : ${bvo.book_name}</h5>
+		</div>
+	<br>
+		<div class="book1"> <!-- 저자 -->
+			<h5>[글쓴이(저자)] : ${bvo.book_writer}</h5>
+		</div>
+	<br>
+		<div class="book1"> <!-- 가격 -->
+			<h5>[책 가격] : ${bvo.book_price}원</h5>
+		</div>
+	<br>
+	
+		<form action = "kakao.do" method = "GET">
+			<input type="hidden" name="user_id" id ="user_id" value="user_id">
+			<input type="hidden" name="book_num" id ="book_num" value="${bvo.book_num}">
+			<input type="hidden" name="book_picture" id ="book_picture" value="${bvo.book_picture}">
+			<input type="hidden" name="book_name" id ="book_name" value="${bvo.book_name}">
+			<input type="hidden" name="book_inventory" id ="book_inventory" value="${bvo.book_inventory}">
+			<input type="hidden" name="book_price" id ="book_price" value="${bvo.book_price}">
+			<c:if test="${bvo.book_inventory>=1}">
+				<select name="purchase_amount" id = "purchase_amount">
+					<c:forEach var="book_amount" begin="1" end="${bvo.book_inventory}" step="1" varStatus="a">
+						<option>${book_amount}</option>
+					</c:forEach>
+				</select>
+				<input type="submit" value = "구매"/>
+			</c:if>
+			<c:if test="${bvo.book_inventory==0}">
+				<input type = "button" value = "품절" disabled="disabled">
+			</c:if>
+		</form>
+		(재고 : ${bvo.book_inventory})
+		<br><br>
+		<div class="container2">
+			<ul>
+				<li>
+					<div class="card border-primary mb-3" style="max-width: 20rem;">
+						<div class="card-header">
+							<font style="vertical-align: inherit;"> 
+							<font style="vertical-align: inherit;">
+								<h5>책 소개</h5>
+								</font>
+							</font>
+						</div>
+						
+						<p class="card-text">
+							<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;"><pre>
+							 <c:out value="${bvo.book_info}"/>
+							</pre></font></font>
+						</p>
+					</div>
+				</li>
 
-<br>
-<pre><c:out value="${bvo.book_info}"/></pre>
-<pre><c:out value="${bvo.book_mokcha}"/></pre><br>
+				<li>
+					<div class="card border-primary mb-3" style="max-width: 20rem;">
+						<div class="card-header">
+							<font style="vertical-align: inherit;"> 
+							<font style="vertical-align: inherit;">
+							 <h5>목차</h5></font></font>
+						</div>
 
+						<p class="card-text">
+							<font style="vertical-align: inherit;"> 
+							<font style="vertical-align: inherit;">
+							<pre><c:out value="${bvo.book_mokcha}"/></pre>
+							</font></font>
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
 
-<% int admin = 0;
-	if (admin == 1) { %>
-	<form action ="${path}/book/bookAll.do?page=${supPaging.page}&perPageNum=${supPaging.perPageNum}">
-		<input  type = "hidden" name = "page" value ="${supPaging.page}">
-		<input  type = "hidden" name = "perPageNum" value ="${supPaging.perPageNum}">
-	<button type = "submit">목록</button>
-	</form>
-<% } else if (admin == 0) { %>
-	<!-- 관리자 로그인시 보여야할 버튼 -->
-	<form action ="${path}/book/bookAll.do?page=${supPaging.page}&perPageNum=${supPaging.perPageNum}">
-		<input  type = "hidden" name = "page" value ="${supPaging.page}">
-		<input  type = "hidden" name = "perPageNum" value ="${supPaging.perPageNum}">
-	<button type = "submit">목록</button>
-	</form>
-	<form action ="${path}/book/updateBook.do" method = "GET">
-		<input  type = "hidden" name = "book_name" value ="${bvo.book_name}">
-		<input  type = "hidden" name = "page" value ="${supPaging.page}">
-		<input  type = "hidden" name = "perPageNum" value ="${supPaging.perPageNum}">
-		<button type = "submit">수정</button>
-	</form>
-	<form action ="${path}/book/deleteBook.do" method = "POST">
-		<input  type = "hidden" name = "book_name" value ="${bvo.book_name}"> 
-		<input  type = "hidden" name = "page" value ="${supPaging.page}">
-		<input  type = "hidden" name = "perPageNum" value ="${supPaging.perPageNum}">
-		<button type = "submit" onclick="return confirm('삭제하시겠습니까?')">삭제</button>
-	</form>
-<% } %>
-<!-- ----------------------------------------------------------------------  -->
-
+		<%
+			int admin = 0;
+			if (admin == 1) {
+		%>
+		<form action="${path}/book/bookAll.do?page=${supPaging.page}&perPageNum=${supPaging.perPageNum}">
+			<input type="hidden" name="page" value="${supPaging.page}">
+			<input type="hidden" name="perPageNum" value="${supPaging.perPageNum}">
+			<button type = "submit"class = "btn btn-primary">
+			<font style = "vertical-align : inherit;">
+			<font style = "vertical-align : inherit;">목록 </font></font></button>
+		</form>
+		<%
+			} else if (admin == 0) {
+		%>
+		<!-- 관리자 로그인시 보여야할 버튼 -->
+		<div class="grid">
+		 <div class="grid_item first">
+			<form action="${path}/book/bookAll.do?page=${supPaging.page}&perPageNum=${supPaging.perPageNum}">
+				<input type="hidden" name="page" value="${supPaging.page}"> 
+				<input type="hidden" name="perPageNum" value="${supPaging.perPageNum}">
+				<button type = "submit"class = "btn btn-primary">
+				<font style = "vertical-align : inherit;">
+				<font style = "vertical-align : inherit;">목록 </font></font></button>
+			</form>
+		</div>
+		
+		<div class="grid_item two">
+			<form action="${path}/book/updateBook.do" method="GET">
+				<input type="hidden" name="book_name" value="${bvo.book_name}">
+				<input type="hidden" name="page" value="${supPaging.page}">
+				<input type="hidden" name="perPageNum" value="${supPaging.perPageNum}">
+			<button type = "submit"class = "btn btn-info">
+			<font style = "vertical-align : inherit;">
+			<font style = "vertical-align : inherit;">수정</font></font></button>
+			</form>
+		</div>
+		
+		<div class="grid_item third">
+			<form action="${path}/book/deleteBook.do" method="POST">
+				<input type="hidden" name="book_name" value="${bvo.book_name}">
+				<input type="hidden" name="page" value="${supPaging.page}"> 
+				<input type="hidden" name="perPageNum" value="${supPaging.perPageNum}">
+			<button type = "submit"class = "btn btn-danger"onclick="return confirm('삭제하시겠습니까?')">
+				<font style = "vertical-align : inherit;">
+				<font style = "vertical-align : inherit;">삭제</font></font> 
+			</button>
+			</form>
+		</div>
+	</div>
+		<%
+			}
+		%>
+		<!-- ----------------------------------------------------------------------  -->
+</div>
 </body>
 </html>

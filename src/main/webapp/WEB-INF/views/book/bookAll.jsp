@@ -13,13 +13,6 @@
 <script src="<c:url value = "/resources/js/jquery-3.3.1.js"/>"></script>
 </head>
 <body>
-<script>
-function testFunction() {
-	alert("함수가 실행되었습니다.");
-}
-</script>
-<button onclick="testFunction()">테스트</button>
-
 <form action = "purchaseList.do" methode = "get">
 	<input type="hidden" name = "user_id" value = "user_id">
 	<input type="submit" value="구입목록">

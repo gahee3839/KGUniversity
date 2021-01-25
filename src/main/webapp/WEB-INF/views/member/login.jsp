@@ -24,6 +24,11 @@
 </script>
 </head>
 <body>
+
+<jsp:include page="../include/header.jsp" />
+	<br>
+	<br>
+
 	<h1>로그인</h1>
 	<hr>
 	<form name="loginForm" action="/www/member/loginChk.do" method="post" onsubmit="return validate()">

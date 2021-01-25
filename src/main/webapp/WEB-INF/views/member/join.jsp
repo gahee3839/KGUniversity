@@ -8,6 +8,11 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
+
+<jsp:include page="../include/header.jsp" />
+	<br>
+	<br>
+
 	<h2>회원등록폼</h2>
 	<form action="/www/member/insertUser.do" onsubmit="return validate()" method="post">
 		<label>아이디</label>

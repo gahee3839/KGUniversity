@@ -1,9 +1,14 @@
+<%@page import="javax.mail.Session"%>
+<%@page import="org.springframework.web.context.request.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <%@ page session="false"%>
+<%
+	String user_id = (String) request.getParameter("user_id");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +71,7 @@ div.book1 a {
 
 		<div class="container1">
 			<div class="pic"><!-- 책 사진 -->
-				<img src="<spring:url value='/resources/img/${List.book_picture}'/>">
+				<img src="<spring:url value='/resources/img/${bvo.book_picture}'/>">
 			</div>
 		</div>
 	<br>
@@ -84,7 +89,7 @@ div.book1 a {
 	<br>
 	
 		<form action = "kakao.do" method = "GET">
-			<input type="hidden" name="user_id" id ="user_id" value="user_id">
+			<input type="hidden" name="user_id" id ="user_id" value="<%=user_id%>">
 			<input type="hidden" name="book_num" id ="book_num" value="${bvo.book_num}">
 			<input type="hidden" name="book_picture" id ="book_picture" value="${bvo.book_picture}">
 			<input type="hidden" name="book_name" id ="book_name" value="${bvo.book_name}">
@@ -118,9 +123,9 @@ div.book1 a {
 						
 						<p class="card-text">
 							<font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;"><pre>
-							 <c:out value="${bvo.book_info}"/>
-							</pre></font></font>
+							<font style="vertical-align: inherit;">
+							<pre style="overflow : auto; max-height: 20rem;"><c:out value="${bvo.book_info}"/></pre>
+							</font></font>
 						</p>
 					</div>
 				</li>
@@ -136,7 +141,7 @@ div.book1 a {
 						<p class="card-text">
 							<font style="vertical-align: inherit;"> 
 							<font style="vertical-align: inherit;">
-							<pre><c:out value="${bvo.book_mokcha}"/></pre>
+							<pre style="overflow : auto; max-height: 20rem;"><c:out value="${bvo.book_mokcha}"/></pre>
 							</font></font>
 						</p>
 					</div>
@@ -144,10 +149,7 @@ div.book1 a {
 			</ul>
 		</div>
 
-		<%
-			int admin = 0;
-			if (admin == 1) {
-		%>
+<%	if(!user_id.equals("bookadmin")) { %>
 		<form action="${path}/book/bookAll.do?page=${supPaging.page}&perPageNum=${supPaging.perPageNum}">
 			<input type="hidden" name="page" value="${supPaging.page}">
 			<input type="hidden" name="perPageNum" value="${supPaging.perPageNum}">
@@ -155,9 +157,7 @@ div.book1 a {
 			<font style = "vertical-align : inherit;">
 			<font style = "vertical-align : inherit;">목록 </font></font></button>
 		</form>
-		<%
-			} else if (admin == 0) {
-		%>
+	<%} else { %>
 		<!-- 관리자 로그인시 보여야할 버튼 -->
 		<div class="grid">
 		 <div class="grid_item first">
@@ -192,11 +192,8 @@ div.book1 a {
 			</button>
 			</form>
 		</div>
-	</div>
-		<%
-			}
-		%>
-		<!-- ----------------------------------------------------------------------  -->
+ 	   </div>
+	<%} %>
 </div>
 </body>
 </html>

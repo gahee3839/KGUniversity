@@ -8,10 +8,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
+<meta name="viewport" content = "width-device-width", initail-scale="1">
 <meta charset="UTF-8">
 <title>책 등록 페이지</title>
 </head>
 <body>
+<jsp:include page="../include/header.jsp" />
+	<br>
+	<br>
 
 	<div class = container style="margin : auto; width:700px; align : center">
 		<form action ="${path}/book/bookInsertForm.do" method = "post" enctype="multipart/form-data">

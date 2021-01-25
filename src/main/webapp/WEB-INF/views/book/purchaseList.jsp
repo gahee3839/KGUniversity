@@ -7,10 +7,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
+<meta name="viewport" content = "width-device-width", initail-scale="1">
 <meta charset="UTF-8">
 <title>책 상세내용</title>
 </head>
 <body>
+<jsp:include page="../include/header.jsp" />
+	<br>
+	<br>
+
+
 <c:forEach items = "${pvo}" var = "purchase">
 <img src ="<spring:url value='/resources/img/${purchase.book_picture}'/>"><br>
 ${purchase.book_name}<br>

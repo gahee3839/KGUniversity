@@ -12,6 +12,12 @@
 <title>책 상세내용</title>
 </head>
 <body>
+
+<jsp:include page="../include/header.jsp" />
+	<br>
+	<br>
+
+
 <c:forEach items = "${pvo}" var = "purchase">
 <img src ="<spring:url value='/resources/img/${purchase.book_picture}'/>"><br>
 ${purchase.book_name}<br>

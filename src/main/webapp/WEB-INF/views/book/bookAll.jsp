@@ -9,42 +9,91 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>책 판매 목록</title>
-<script src="<c:url value = "/resources/js/jquery-3.3.1.js"/>"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
+<meta name="viewport" content = "width-device-width", initail-scale="1">
+<title>책 목록</title>
+<style>
+ 
+.container1 ul li { display:inline-block; margin:10px; }
+  div.pic img { width:200px; height:200px; }
+  div.book1 { padding:10px 0; text-align:center; }
+  div.book1 a { color:#000; }
+ 
+.pagination {
+   justify-content: center;
+}
+</style>
 </head>
 <body>
-<form action = "purchaseList.do" methode = "get">
-	<input type="hidden" name = "user_id" value = "user_id">
-	<input type="submit" value="구입목록">
-</form>
+<jsp:include page="../include/header.jsp" />
+	<br>
+	<br>
 
-<form action = "search.do" method="get">
-<select name = "searchType" id = "searchType">
-	<option value = "book_name" <c:out value = "${search.searchType eq 'book_title' ? 'selected' : ''}"/>>책 제목</option>
-	<option value = "book_writer" <c:out value = "${search.searchType eq 'book_writer' ? 'selected' : ''}"/>>글쓴이</option>
-</select>
-<input type = "keyword" name = 'keyword' value = "${search.keyword}">
-<input type = "submit" value = "검색">
+<form action = "userPurchase.do" methode = "get">
+	<input type="hidden" name = "user_id" value = "${sessionScope.userId}">
+	<input type="submit" value="구입목록">
 </form><br>
-	<c:forEach items = "${supPaging}" var = "List" >
-		<img src ="<spring:url value='/resources/img/${List.book_picture}'/>"><br>
-		<a href="${path}/book/getBookInfo.do${pageMaker.makeQuery(pageMaker.supPaging.page)}&book_name=${List.book_name}">${List.book_name}</a><br>
-		${List.book_writer}<br>		
-		${List.book_price}<br>
-	</c:forEach>
-	
+
+<div class="all" align="center">
+	<form action = "search.do" method="get">
+		<select name = "searchType" id = "searchType" class = "custom-select" id = "searchType" style="width: 120px; height: 34px; font-size:10pt;">
+			<option value = "book_name" style=font-size:10pt; <c:out value = "${search.searchType eq 'book_title' ? 'selected' : ''}"/>>책 제목</option>
+			<option value = "book_writer" style=font-size:10pt; <c:out value = "${search.searchType eq 'book_writer' ? 'selected' : ''}"/>>글쓴이</option>
+		</select>
+			<input type = "keyword" name = 'keyword' value = "${search.keyword}">
+			<input type = "submit"  class="btn btn-info" value = "검색" style="height: 34px"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"></font></font>
+</form>
+<br>
+
+<div class="container1" style="width: 1300px;">
+	<ul>
+		<c:forEach items = "${supPaging}" var = "List" >
+			<li>
+				<div class ="pic"><!-- 책 사진 -->
+					<img src ="<spring:url value='/resources/img/${List.book_picture}'/>"><br>
+				</div>
+				<div class="book1"><!-- 책 명 -->
+					<a href="${path}/book/getBookInfo.do${pageMaker.makeQuery(pageMaker.supPaging.page)}&book_name=${List.book_name}&user_id=${sessionScope.userId}">${List.book_name}</a><br>
+				</div>
+				<div class="book1"><!-- 저자 -->
+					${List.book_writer}
+				</div>
+				<div class="book1"><!-- 가격 -->
+					${List.book_price}원
+				</div>
+			</li>
+		</c:forEach>
+	</ul>
+</div>
 	<br><br>
-	
-	<c:if test="${pageMaker.prev}">
-		<a href="${path}/book/bookAll.do?page=${pageMaker.startPage-1}">이전</a>
+
+	<!-- 페이지 처리 -->
+<div>
+ <ul class = "pagination" >
+ 	<c:if test="${pageMaker.prev}">
+		<li class = "page-item">
+			<a class="page-link" href="${path}/book/bookAll.do?page=${pageMaker.startPage-1}">
+				<font style = "vertical-align : inherit;"><font style = "vertical-align : inherit;">이전 </font></font >
+			</a>
      </c:if>
 	 <c:forEach begin="${pageMaker.startPage}" end ="${pageMaker.endPage}" var ="idx">
-		<c:out value ="${pageMaker.supPaging.page == idx ? '' : ''}"/>
-		<a href="${path}/book/bookAll.do${pageMaker.makeQuery(idx)}">${idx}</a>
+	 	<li class = "page-item active"<c:out value ="${pageMaker.supPaging.page == idx ? '' : ''}"/>>
+		 		<a class = "page-link" href="${path}/book/bookAll.do${pageMaker.makeQuery(idx)}">
+		 			${idx}
+		 		</a>
+		 </li>
 	</c:forEach>
-	<c:if test="${pageMaker.next && pageMaker.endPage >0}">
-		<a href ="${path}/book/bookAll.do?page=${pageMaker.endPage+1}">다음</a>
-	</c:if>
+		<c:if test="${pageMaker.next && pageMaker.endPage >0}">
+			<li class = "page-item">
+				<a class="page-link" href ="${path}/book/bookAll.do?page=${pageMaker.endPage+1}">
+					<font style = "vertical-align : inherit;"><font style = "vertical-align : inherit;"> 다음 </font></font>
+				</a>
+			</li>
+		</c:if>
+ </ul>
+</div>
+</div>
+
 </body>
 </html>
  

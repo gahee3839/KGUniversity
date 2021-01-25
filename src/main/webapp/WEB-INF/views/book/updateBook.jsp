@@ -12,6 +12,10 @@
 <title>책 수정페이지</title>
 </head>
 <body>
+<jsp:include page="../include/header.jsp" />
+	<br>
+	<br>
+
 	${bvo.book_num}
 	<div class = container style="margin : auto; width:700px; align : center">
 		<form action ="${path}/book/updateBook.do" method = "post" enctype="multipart/form-data">

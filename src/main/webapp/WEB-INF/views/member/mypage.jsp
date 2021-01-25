@@ -9,6 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<jsp:include page="../include/header.jsp" />
+	<br>
+	<br>
+	
 	<%@include file="../../../menu.jsp" %>
 	<h2>마이페이지</h2>
 	<table border="2">

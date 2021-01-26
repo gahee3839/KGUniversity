@@ -40,7 +40,8 @@
 			<option value = "book_writer" style=font-size:10pt; <c:out value = "${search.searchType eq 'book_writer' ? 'selected' : ''}"/>>글쓴이</option>
 		</select>
 			<input type = "keyword" name = 'keyword' value = "${search.keyword}">
-			<input type = "submit"  class="btn btn-info" value = "검색" style="height: 34px"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"></font></font>
+			<font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">
+			<input type = "submit"  class="btn btn-info" value = "검색" style="height: 34px"></font></font>
 </form>
 <br>
 

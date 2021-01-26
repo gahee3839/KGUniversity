@@ -5,14 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-
 <jsp:include page="../include/header.jsp" />
 	<br>
 	<br>
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<h2>회원등록폼</h2>
 	<form action="/www/member/insertUser.do" onsubmit="return validate()" method="post">
 		<label>아이디</label>
@@ -223,5 +221,6 @@ $('#nickname').blur(function(){
 	}
 	
 </script>
+
 </body>
 </html>

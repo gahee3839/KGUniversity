@@ -10,35 +10,79 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
-<meta name="viewport" content = "width-device-width", initail-scale="1">
 <meta charset="UTF-8">
-<title>책 상세내용</title>
+<title>전체 구매목록</title>
+<style>
+.pagination {
+   justify-content: center;
+   
+}
+table{
+text-align: center;
+      width: 100%;
+   table-layout:fixed;
+   
+    word-break:break-all; 
+      }
+   #saleslist{
+      display: block;
+      width: 60%;
+      margin:auto;
+       }
+       table img{width:70px; height:70px;
+       }
+</style>
 </head>
 <body>
 <jsp:include page="../include/header.jsp" />
 	<br>
 	<br>
-
-<input type = "hidden" name = "user_id" value = <%=user_id%>>
-<c:forEach items = "${pvo}" var = "purchase">
-<img src ="<spring:url value='/resources/img/${purchase.book_picture}'/>"><br>
-${purchase.book_name}<br>
-${purchase.book_amount}<br>
-${purchase.purchase_date}<br>
-</c:forEach>
+<h2 align="center">책 판매 현황</h2>
+	<div id="saleslist" align="center" >
+		<table border ="1">
+			<tr>
+				<th>판매제품</th>
+				<th>구매자</th>
+				<th>책 명</th>
+				<th>판매 수량</th>
+				<th>판매 날짜</th>
+			</tr>
+		<c:forEach items = "${pvo}" var = "purchase">
+			<tr>
+				<td><img src ="<spring:url value='/resources/img/${purchase.book_picture}'/>"></td>
+				<td>${purchase.user_id}</td>
+				<td>${purchase.book_name}</td>
+				<td>${purchase.book_amount}</td>
+				<td>${purchase.purchase_date}</td>
+		</c:forEach>
+		</table>
+	</div>
 
 <br><br>
 	
-	<c:if test="${pageMaker.prev}">
-		<a href="${path}/book/purchaseList.do?page=${pageMaker.startPage-1}">이전</a>
-     </c:if>
+	<!-- 페이지 처리  -->
+<div>
+	<ul class = "pagination">
+	 <c:if test="${pageMaker.prev}">
+	  <li class = "page-item">
+		<a class = "page-link" href="${path}/book/purchaseList.do?page=${pageMaker.startPage-1}">
+		 <font style = "vertical-align : inherit;"><font style = "vertical-align : inherit;">이전</font></font>
+		</a>
+	 </c:if>
 	 <c:forEach begin="${pageMaker.startPage}" end ="${pageMaker.endPage}" var ="idx">
-		<c:out value ="${pageMaker.purPaging.page == idx ? '' : ''}"/>
-		<a href="${path}/book/purchaseList.do${pageMaker.makePurchase(idx)}">${idx}</a>
-	</c:forEach>
-	<c:if test="${pageMaker.next && pageMaker.endPage >0}">
-		<a href ="${path}/book/purchaseList.do?page=${pageMaker.endPage+1}">다음</a>
-	</c:if>
+		<li<c:out value ="${pageMaker.purPaging.page == idx ? ' class=active' : ''}"/>>
+			<a class ="page-link" href = "${path}/book/purchaseList.do${pageMaker.makePurchase(idx)}">${idx}</a>
+		</li>
+	 </c:forEach>
+	 <c:if test="${pageMaker.next && pageMaker.endPage >0}">
+	 	<li class = "page-item">
+			<a class = "page-link" href ="${path}/book/purchaseList.do?page=${pageMaker.endPage+1}">
+			 <font style = "vertical-align : inherit;"><font style = "vertical-align : inherit;"> 다음 </font></font>
+			</a>
+		</li>
+	 </c:if>
+	</ul>
+</div>
 	
 </body>
 </html>

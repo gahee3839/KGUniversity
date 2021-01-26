@@ -19,7 +19,6 @@
 	<br>
 	<br>
 
-	${bvo.book_num}
 	<div class = container style="margin : auto; width:700px; align : center">
 		<form action ="${path}/book/updateBook.do" method = "post" enctype="multipart/form-data">
 		<input  type = "hidden" name = "page" value ="${supPaging.page}">
@@ -55,8 +54,8 @@
 	</div>  
    
 	
-	<input style = "margin:8px" class="btn btn-success" type = "submit" value = "등록" onclick="return confirm('등록하시겠습니까?')">
-	<input style = "margin:8px" class="btn btn-warning" type = "button" value = "취소" onclick="history.back(-1)">
+	<input style = "margin:8px" class="btn btn-primary" type = "submit" value = "등록" onclick="return confirm('등록하시겠습니까?')">
+	<input style = "margin:8px" class="btn btn-outline-secondary" type = "button" value = "취소" onclick="history.back(-1)">
 	</form>
 </div>
 </body>

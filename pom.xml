@@ -22,6 +22,11 @@
 		</repository>
 	</repositories>
 	<dependencies>
+		<dependency>
+	    	<groupId>com.github.iamport</groupId>
+	    	<artifactId>iamport-rest-client-java</artifactId>
+	    	<version>0.2.13</version>
+		</dependency>
 	<!-- 2021.01.22 윤상민 결제api  -->
 		<!-- Spring -->
 		<dependency>
@@ -72,11 +77,7 @@
 			<version>1.16</version>
 		</dependency>
 		<!-- 결제 api  -->
-		<dependency>
-	    	<groupId>com.github.iamport</groupId>
-	    	<artifactId>iamport-rest-client-java</artifactId>
-	    	<version>0.2.13</version>
-		</dependency>
+	
 	
 	<!-- 윤상민-end -->
 	

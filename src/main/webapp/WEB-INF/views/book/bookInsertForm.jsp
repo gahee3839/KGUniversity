@@ -47,14 +47,14 @@
 		<label for="mokcha1">목차:</label><br><br>
 			<textarea rows="5" cols="50" id="mok1" name="book_mokcha"></textarea>
 	</div>  
-	<div class="form-group"  style = "width : 50px">
+	<div class="form-group"  style = "width : 150px">
 		<label for="inventory1">재고:</label><br><br>
 			<input type="text" class="form-control" id="inventory1" name="book_inventory">
 	</div>  
    
 	
-	<input style = "margin:8px" class="btn btn-success" type = "submit" value = "등록" onclick="return confirm('등록하시겠습니까?')">
-	<input style = "margin:8px" class="btn btn-warning" type = "reset" value = "취소">
+	<input style = "margin:8px" class="btn btn-primary" type = "submit" value = "등록" onclick="return confirm('등록하시겠습니까?')">
+	<input style = "margin:8px" class="btn btn-outline-secondary" type = "reset" value = "취소">
 	</form>
 </div>
 </body>

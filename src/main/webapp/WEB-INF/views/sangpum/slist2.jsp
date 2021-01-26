@@ -7,8 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 제이쿼리 -->
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>중고장터 목록</title>
 </head>
@@ -29,6 +28,10 @@
 	
 
 <body>
+
+<jsp:include page="../include/header.jsp" />
+	<br>
+	<br>
 
 <h2>게시판</h2>
 <div id="outter">

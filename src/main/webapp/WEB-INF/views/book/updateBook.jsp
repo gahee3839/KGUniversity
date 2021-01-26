@@ -5,6 +5,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value ="${pageContext.request.contextPath}"/>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%
+	String user_id = (String) session.getAttribute("userId");
+%>
 <!DOCTYPE html>
 <html>
 <head>

@@ -74,7 +74,7 @@ public class BookController {
 	
 	//목록 페이지 이동
 	@RequestMapping(value = "/bookAll.do", method = RequestMethod.GET)
-	public String SupPaging(Model model, SupPaging supPaging) throws Exception {
+	public String SupPaging(Model model, SupPaging supPaging, String user_id) throws Exception {
 		logger.info("목록 페이지..");
 		
 		PageMaker pageMaker = new PageMaker();
@@ -82,7 +82,7 @@ public class BookController {
 		pageMaker.setTotalCount(bookService.countBook(supPaging));
 		model.addAttribute("supPaging", bookService.supPaging(supPaging));
 		model.addAttribute("pageMaker", pageMaker);
-		
+		model.addAttribute("user_id", user_id);
 		return "/book/bookAll";
 	}
 	
@@ -216,12 +216,13 @@ public class BookController {
 	
 	//전체 구매 목록
 	@RequestMapping(value = "/purchaseList.do", method = RequestMethod.GET)
-	public String PurchaseAll(PurPaging purPaging, Model model) throws Exception {
+	public String PurchaseAll(PurPaging purPaging, Model model, String user_id) throws Exception {
 				PageMaker pageMaker = new PageMaker();
 				pageMaker.setPurPaging(purPaging);
 				pageMaker.setTotalCountP(bookService.countPurchase(purPaging));
 				model.addAttribute("pageMaker", pageMaker);
 				model.addAttribute("pvo", bookService.purPaging(purPaging));
+				model.addAttribute("user_id", user_id);
 		return "/book/purchaseList";
 	}
 	

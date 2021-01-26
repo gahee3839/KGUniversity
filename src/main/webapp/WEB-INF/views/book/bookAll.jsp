@@ -5,11 +5,15 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value ="${pageContext.request.contextPath}"/>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%
+	String user_id = (String) session.getAttribute("userId");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <meta name="viewport" content = "width-device-width", initail-scale="1">
 <title>책 목록</title>
 <style>
@@ -28,11 +32,6 @@
 <jsp:include page="../include/header.jsp" />
 	<br>
 	<br>
-
-<form action = "userPurchase.do" methode = "get">
-	<input type="hidden" name = "user_id" value = "${sessionScope.userId}">
-	<input type="submit" value="구입목록">
-</form><br>
 
 <div class="all" align="center">
 	<form action = "search.do" method="get">

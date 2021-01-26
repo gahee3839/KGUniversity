@@ -17,6 +17,14 @@
 <title>header</title>
 </head>
 <body>
+
+<%
+	String user_id = null;
+	if(session.getAttribute("userId") != null) {
+		user_id = (String) session.getAttribute("userId");
+	}
+%>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">KGUNIVERSITY</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,16 +47,33 @@
           <a class="dropdown-item" href="#">자유게시판</a>
           <a class="dropdown-item" href="#">정보게시판</a>
           <a class="dropdown-item" href="#">동아리</a>
-          <a class="dropdown-item" href="${path}/book/bookAll.do">학생서점</a>
+          <a class="dropdown-item" href="${path}/book/bookAll.do?user_id=<%=user_id%>">학생서점</a>
           <a class="dropdown-item" href="#">학생장터</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="${path}/member/login.do">로그인</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="${path}/member/logout.do">로그아웃</a>
-      </li>
+      <%if(user_id==null) { %>
+      	<li class="nav-item">
+        	<a class="nav-link" href="${path}/member/login.do">로그인</a>
+      	</li>
+      
+      <% } else if (!user_id.equals("bookadmin")) { %>
+      	<li class="nav-item">
+      		<a class = "nav-link" href = "${path}/book/userPurchase.do?user_id=<%=user_id%>">구매 목록</a>
+      	</li>
+      	<li class="nav-item">
+        	<a class="nav-link" href="${path}/member/logout.do">로그아웃</a>
+      	</li>
+      <% } else { %>
+      	<li class="nav-item">
+      		<a class = "nav-link" href = "${path}/book/bookInsertForm.do?user_id=<%=user_id%>">책 등록</a>
+      	</li>
+      	<li class="nav-item">
+      		<a class = "nav-link" href = "${path}/book/purchaseList.do?user_id=<%=user_id%>">판매목록</a>
+      	</li>
+      	<li class="nav-item">
+        	<a class="nav-link" href="${path}/member/logout.do">로그아웃</a>
+      	</li>
+      <% } %>
     </ul>
   </div>
 </nav>

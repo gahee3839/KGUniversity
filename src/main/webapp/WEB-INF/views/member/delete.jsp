@@ -2,27 +2,37 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<jsp:include page="../include/header.jsp" />
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-	<h2>회원탈퇴</h2>
 	<br>
-	<form action="/www/member/deleteUser.do" method="post">
-			<p>
+	<br>
+	<div class="col-sm-8" style="text-align: center;">
+	<h1>회원탈퇴</h1>
+	<br>
+	
+			<p class="lead">
 				사용하고 계신 아이디<font color="red">${sessionScope.userId}</font>를 탈퇴하시겠습니까?<br>
-				회원탈퇴시 해당 계정의 개인정보는 모두 삭제처리되며, 탈퇴후에는 복구가 불가능합니다.<br>
+				회원탈퇴시 해당 계정의 개인정보는 모두 삭제처리되며,<br> 탈퇴후에는 복구가 불가능합니다.<br>
 			</p>
 			<br>
-				<input type="hidden" id="userId" name="userId" value="${sessionScope.userId}">
-				<label>비밀번호:</label> <input type="password" id="userPw" name="userPw" required>
+	<form action="/www/member/deleteUser.do" class="form-control" method="post">
+			<input type="hidden" id="userId" name="userId" value="${sessionScope.userId}">
+				<label>비밀번호</label>&nbsp;&nbsp; 
+				<input type="password" id="userPw" name="userPw" required>
+		<br><br>
 				<div id="pwChkMsg"></div>
-				<input type="submit" value="회원탈퇴" id="deleteSubmit" onclick="return confirm('정말 탈퇴하시겠습니까?')" disabled>
-				<a href="/www/member/mypage.do?userId=${sessionScope.userId}"><input type="button" value="취소" ></a>
+				<br><br>
+				<input type="submit" class="btn btn-danger" value="회원탈퇴"  id="deleteSubmit" onclick="return confirm('정말 탈퇴하시겠습니까?')" disabled>
+				<a href="/www/member/mypage.do?userId=${sessionScope.userId}"><input type="button" class="btn btn-secondary" value="취소" ></a>
+		
 	</form> 
-				
+	</div>	
 <script type="text/javascript">
 //비밀번호 확인 
 	$('#userPw').blur(function(){

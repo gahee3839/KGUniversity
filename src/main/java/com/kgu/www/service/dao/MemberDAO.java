@@ -59,6 +59,11 @@ public class MemberDAO {
 			return sqlSession.selectOne("member.idChk", userId);
 		}
 
+		//이메일중복체크
+		public int emailChk(String email) {
+			return sqlSession.selectOne("member.emailChk", email);
+		}
+		
 		//닉네임중복체크
 		public int nickChk(String nickname) {
 			return sqlSession.selectOne("member.nickChk", nickname);
@@ -84,4 +89,6 @@ public class MemberDAO {
 		public String findId(String email) {
 			return sqlSession.selectOne("member.findId",email);
 		}
+
+		
 }

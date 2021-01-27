@@ -28,7 +28,7 @@ public class UserMailSendService {
 					+"<h3>"+userId+"님 회원가입을 완료하시려면 "+"<br><br><br>"
 					+"<a href='http://localhost:8081/www/member/verify.do?userId="+userId+"'>인증하기</a>버튼을 눌러주세요</h3>";
 		try {
-			mail.setSubject("[본인인증] KG_University 인증메일","UTF-8");
+			mail.setSubject("[KG_University] KG_University 인증메일","UTF-8");
 			mail.setText(htmlStr, "UTF-8", "html");
 			mail.addRecipient(RecipientType.TO,new InternetAddress(email));
 			mailSender.send(mail);
@@ -46,7 +46,7 @@ public class UserMailSendService {
 					+"<h3>"+userId+"님 임시비밀번호는" + newPw +"입니다. "+"<br><br><br>"
 					+ "<a href='http://localhost:8081/www/member/login.do'>로그인</a>";
 		try {
-			mail.setSubject("[비밀번호] KG_University 임시비밀번호발급메일","UTF-8");
+			mail.setSubject("[KG_University] KG_University 임시비밀번호발급메일","UTF-8");
 			mail.setText(htmlStr, "UTF-8", "html");
 			mail.addRecipient(RecipientType.TO,new InternetAddress(email));
 			mailSender.send(mail);

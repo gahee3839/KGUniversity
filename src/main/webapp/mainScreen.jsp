@@ -14,6 +14,5 @@
 	</script> -->
 	
 	<!-- <a href="boardList">중고장터</a> -->
-
 </body>
 </html>

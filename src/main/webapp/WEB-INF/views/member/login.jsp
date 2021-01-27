@@ -2,8 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<jsp:include page="../include/header.jsp" />
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>로그인</title>
 <script>
@@ -23,28 +25,36 @@
 	}
 </script>
 </head>
+
 <body>
-	<h1>로그인</h1>
-	<hr>
-	<form name="loginForm" action="/www/member/loginChk.do" method="post" onsubmit="return validate()">
-		<table border="1">
-			<tr>
-				<td>아이디</td>
-				<td><input type="text" id="userId" name="userId" /></td>
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td><input type="password" id="userPw" name="userPw" /></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="submit"id="btnLogin" value="로그인"/> 
-					<input type="reset" value="취소" /></td>
-			</tr>
-		</table>
-		아직 회원이 아니신가요?<a href="/www/member/join.do">회원가입</a><br>
-		<a href="/www/member/find1.do">아이디찾기</a>/<a href="/www/member/find2.do">비밀번호찾기</a>
-	</form>
+	<br><br>
+	<div class="row">
+		<div class="col-sm-5" style="text-align:center; margin-top:auto; margin-left: auto; margin-right: auto;">
+			<h1>로그인</h1>
+			<hr>
+			<br><br>
+			<form name="loginForm" action="/www/member/loginChk.do" method="post" onsubmit="return validate()">
+				<table class="table" style="margin-left: auto; margin-right: auto;">
+					<tr>			
+						<td>아이디</td>
+						<td><input type="text" id="userId" name="userId" /></td>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td><input type="password" id="userPw" name="userPw" /></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							<input type="submit" class="btn btn-primary" id="btnLogin" value="로그인"/> 
+							<input type="reset" class="btn btn-secondary"  value="취소" />
+						</td>
+					</tr>
+				</table>
+			</form>
+			아직 회원이 아니신가요?<a href="/www/member/join.do">회원가입</a><br>
+			<a href="/www/member/find1.do">아이디찾기</a>/<a href="/www/member/find2.do">비밀번호찾기</a>
+		</div>
+	</div>
 	<c:if test="${msg=='failure'}">
 		<script>
 			alert("아이디 또는 비밀번호가 일치하지 않습니다")

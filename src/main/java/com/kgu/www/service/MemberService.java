@@ -20,6 +20,8 @@ public interface MemberService {
 	public void updatePw(String userId, String newPw);
 
 	public int idChk(String userId);
+	
+	public int emailChk(String email);
 
 	public int nickChk(String nickname);
 
@@ -30,4 +32,6 @@ public interface MemberService {
 	public String findId(String email);
 	
 	public String makePw();
+
+	
 }

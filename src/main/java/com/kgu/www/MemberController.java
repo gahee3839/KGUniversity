@@ -38,6 +38,7 @@ public class MemberController {
 		if(result==true) {	//로그인체크성공(아이디와 비밀번호일치)
 			if(memberService.verifyChk(vo.getUserId())) {	//인증완료된 계정
 				session.setAttribute("userId", vo.getUserId());
+				session.setAttribute("nickname", vo.getNickname());
 				mav.setViewName("redirect:mypage.do?userId="+vo.getUserId());
 				mav.addObject("msg", "success");
 			}else {	//인증 미완료인 계정
@@ -98,6 +99,15 @@ public class MemberController {
 		return result;
 	}
 	
+	//AJAX사용-이메일중복체크
+	@ResponseBody
+	@RequestMapping(value="emailChk.do", method=RequestMethod.GET)
+	public int emailChk(@RequestParam("email") String email) {
+		System.out.println("이메일중복체크들어옴");
+		int cnt = memberService.emailChk(email);
+		return cnt;
+	}
+	
 	//AJAX사용-닉네임중복체크
 	@ResponseBody
 	@RequestMapping(value="nickChk.do", method=RequestMethod.GET)
@@ -153,13 +163,6 @@ public class MemberController {
 		memberService.deleteUser(userId);
 		return "member/login";
 	}
-	
-	//이메일전송
-	/*@RequestMapping("sendEmail.do")
-	public void sendEmail(String userId, String email) {
-		System.out.println("컨트롤러 들어옴-이메일발송");
-		mailSender.mailSend(userId,email);
-	}*/
 	
 	//이메일인증 선공
 	@RequestMapping("verify.do")

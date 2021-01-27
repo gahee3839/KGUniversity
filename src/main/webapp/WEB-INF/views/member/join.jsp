@@ -2,65 +2,79 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<jsp:include page="../include/header.jsp" />
 <head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <meta charset="UTF-8">
 <title>회원가입</title>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
+	<br><br>
+	<div class="col-sm-7" style="text-align:center;">
 	<h2>회원등록폼</h2>
 	<form action="/www/member/insertUser.do" onsubmit="return validate()" method="post">
-		<label>아이디</label>
-			<input type="text" id="userId" name="userId" required/>
-			<div id="idChkMsg"></div>
-		<label>비밀번호</label>
-			<input type="password" id="userPw" name="userPw" onblur="pwChk()" required/>
-			<div id="pwValMsg"></div>		
-		<label>비밀번호확인</label>
-			<input type="password" id="userPw2" name="userPw2" onblur="pwChk()" disabled required/>
-			<div id="pwChkMsg"></div>
-		<label>이름</label>
-			<input type="text" id="userName" name="userName" required/>
-			<div id="nameValMsg"></div>
-		<label>이메일</label>
-			<input type="text" id="email" name="email" required/><br>
-			입력한 이메일계정으로 발송된 인증메일에서 인증하기를 클릭해야 인증과정이 완료됩니다.<br>
-			인증 후 로그인이 가능하오니 정확한 이메일을 작성해 주세요.
-			<div id="emailValMsg"></div>
-		<label>닉네임</label>
-			<input type="text" id="nickname" name="nickname" required/>
-			<div id="nickChkMsg"></div>
-		<label>전공</label>
-			<input type="text" id="major" name="major"/>
-		<br>
-		<input type="submit" id="joinSubmit" name="joinSubmit" value="가입">
-		<a href="/www/member/login.do"><input type="button" value="취소"></a>			
+		<table class="table table-hover">
+		<tr>
+			<th>아이디</th>
+			<td>
+				<input type="text" class="input" id="userId" name="userId" required/>
+				<div id="idChkMsg"></div>
+			</td>
+		</tr>
+		<tr>
+			<th>비밀번호</th>
+			<td>
+				<input type="password" id="userPw" name="userPw" onblur="pwChk()" required/>
+				<div id="pwValMsg"></div>
+			</td>
+		</tr>
+		<tr>
+			<th>비밀번호확인</th>
+			<td>
+				<input type="password" id="userPw2" name="userPw2" onblur="pwChk()" disabled required/>
+				<div id="pwChkMsg"></div>
+			</td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td>
+				<input type="text" id="userName" name="userName" required/>
+				<div id="nameValMsg"></div>
+			</td>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<td>
+				입력한 이메일계정으로 발송된 인증메일에서 인증하기를 클릭해야 인증과정이 완료됩니다.<br>
+				인증 후 로그인이 가능하오니 정확한 이메일을 작성해 주세요.<br>
+				<input type="text" id="email" name="email" required/><br>
+				<div id="emailChkMsg"></div>
+			</td>
+		</tr>
+		<tr>
+			<th>닉네임</th>
+			<td>
+				<input type="text" id="nickname" name="nickname" required/>
+				<div id="nickChkMsg"></div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="submit" id="joinSubmit" class="btn btn-primary" name="joinSubmit" value="가입">
+		<a href="/www/member/login.do"><input type="button" class="btn btn-secondary" value="취소"></a>
+			</td>
+		</tr>
+			
+		</table>
 	</form>
-
+</div>
 
 
 <script type="text/javascript">
 	//아이디,비밀번호,이름,이메일,닉네임 각각이 조건에 부합하면true / 그렇지 못하면 false
 	//배열의 모든 요소가 true여야 회원가입가능
 	var ckval = new Array(5).fill(false);
-
-//이메일전송
-/* 	$('#emailSend').click(function(){
-		var userId = $('#userId').val();
-		var email = $('#email').val();
-		
-		$.ajax({
-			type: 'POST',
-			url: '/www/member/sendEmail.do',
-			data:{
-				userId: userId,
-				email: email
-			},
-			success: function(result) {
-				alert('이메일 발송성공');
-			}
-		})
-	}) */
 	
 //아이디 중복체크,유효성검사 함수
 	$('#userId').blur(function(){
@@ -150,22 +164,37 @@ $('#userName').blur(function(){
 	}
 })
 
-//이메일 유효성검사 함수
+//이메일 중복검사, 유효성검사 함수
 $('#email').blur(function(){
 	var email = $('#email').val();
 	//이메일 정규식 ID는 숫자영대소문자-_허용 @ 영대소문자 . 영대소문자(2-3글자)
 	var emailRE = /^[0-9a-zA-Z_-]+@[a-zA-Z]+.[a-zA-Z]{2,3}$/;
 	
-	if(emailRE.test(email)){
-		ckval[3] = true;
-		$("#email").css('border','3px solid green');
-		$('#emailValMsg').text('');
-	}else{
-		ckval[3] = false;
-		$("#email").css('border','3px solid red');
-		$('#emailValMsg').text('이메일은 xxx@xxx.xxx 형식으로 입력해주세요');
-		$('#emailValMsg').css('color','red');
-	}
+	$.ajax({
+		type: 'GET',
+		url: '/www/member/emailChk.do?email='+email,
+		success: function(result) {
+			if(result == 1){
+				ckval[0] = false;
+				$("#email").css('border','3px solid red');
+				$('#emailChkMsg').text('이미 사용중인 이메일입니다.');
+				$('#emailChkMsg').css('color','red');
+			}else{
+				if(emailRE.test(email)){
+					ckval[0] = true;
+					$("#email").css('border','3px solid green');
+					$('#emailChkMsg').text('');
+					$('#emailChkMsg').css('color','green');
+				}else{
+					ckval[3] = false;
+					$("#email").css('border','3px solid red');
+					$('#emailChkMsg').text('이메일은 xxx@xxx.xxx 형식으로 입력해주세요');
+					$('#emailChkMsg').css('color','red');
+				}
+				
+			}
+		} 
+	})
 })
 
 //닉네임 중복체크, 유효성검사 함수

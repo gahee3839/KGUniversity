@@ -2,30 +2,55 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<jsp:include page="../include/header.jsp" />
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-	<h1>비밀번호 찾기</h1>
-	<hr>
-	<label>아이디</label>
-	<input type="text" id="userId" name="userId" required />
-	<label>이메일</label>
-	<input type="text" id="email" name="email" required />
-	<input type="button" id="findPwBtn" value="비밀번호찾기">
-	<div id="findResult"></div>
 	<br>
-	<a href="/www/member/login.do"><input type="button"value="로그인"></a>
-	<a href="/www/member/join.do"><input type="button"value="회원가입"></a>
-	
-	<a href="/www/member/find1.do"><input type="button"value="아이디찾기"></a>
-	
+	<br>
+	<div class="col-sm-8" style="text-align: center;">
+		<h1>비밀번호 찾기</h1>
+		<hr>
+		<br>
+		<br>
+		<form class="form-inline" role="form">
+			<div class="form-line form-group" style="margin: auto; text-align: center;">
+				<label for="userId" class="col-form-label col-form-label-sm">아이디</label>
+				<input type="text" class="form-control form-control-sm" id="userId" name="userId" required />
+				&nbsp;
+				<label class="col-form-label col-form-label-sm">이메일</label> 
+				<input type="text" class="form-control form-control-sm" id="email" name="email" required />
+				&nbsp;&nbsp;
+				<input type="button" class="btn btn-primary" id="findPwBtn" value="비밀번호찾기">
+			</div>
+		</form>
+		<div id="findResult"></div>
+		<br>
+		<br> 
+		<a href="/www/member/login.do"><input type="button"  class="btn btn-success" value="로그인"></a> 
+		<a href="/www/member/join.do"><input type="button" class="btn btn-info" value="회원가입"></a>
+		<a href="/www/member/find1.do"><input type="button" class="btn btn-secondary" value="아이디찾기"></a>
+	</div>
+
 	<script type="text/javascript">
 	$('#findPwBtn').click(function(){
 		var userId = $("#userId").val();
 		var email = $("#email").val();
+		
+		if(userId==''){
+			$('#findResult').text('아이디를 입력하세요');
+			$('#findResult').css('color','red');
+			return;
+		}
+		if(email==''){
+			$('#findResult').text('이메일을 입력하세요');
+			$('#findResult').css('color','red');
+			return;
+		}
 		
 		$.ajax({
 			type: 'POST',

@@ -30,7 +30,7 @@ public class BookDAOTest {
 	private BookDAO bdao;
 	
 	//db 입력
-	/*@Test
+	@Test
 	public void testCreate() throws Exception {
 		BookVO bvo = new BookVO();
 		for(int i = 1; i<=1000; i++) {
@@ -44,7 +44,7 @@ public class BookDAOTest {
 		
 		bdao.bookInsertForm(bvo);
 		}
-	}*/
+	}
 	
 	/*@Test
 	public void purchaseInsert() throws Exception{

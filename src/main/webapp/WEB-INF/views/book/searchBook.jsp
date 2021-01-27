@@ -74,7 +74,7 @@
       <a class="page-link" href="${pageMaker.makeSearch(pageMaker.startPage-1)}"> <font style = "vertical-align : inherit;"><font style = "vertical-align : inherit;">이전 </font> </font > </a>
     </li>	</c:if>
      <c:forEach begin="${pageMaker.startPage}" end ="${pageMaker.endPage}" var ="idx">
-    <li class = "page-item active" <c:out value ="${pageMaker.supPaging.page == idx ? '' : ''}"/>>
+    <li class = "page-item <c:out value ="${pageMaker.supPaging.page == idx ? 'active' : ''}"/>">
       <a class="page-link" href="${path}/book/search.do${pageMaker.makeSearch(idx)}">${idx}<font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">  </font> </font> </a>
     </li>
     </c:forEach>

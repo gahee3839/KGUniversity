@@ -75,7 +75,7 @@ text-align: center;
          </a>
      </c:if>
     <c:forEach begin="${pageMaker.startPage}" end ="${pageMaker.endPage}" var ="idx">
-       <li class = "page-item active"<c:out value ="${pageMaker.supPaging.page == idx ? '' : ''}"/>>
+       <li class = "page-item <c:out value ="${pageMaker.supPaging.page == idx ? 'active' : ''}"/>">
              <a class = "page-link" href="${path}/book/userPurchase.do${pageMaker.makeUserPurchase(idx)}">
                 ${idx}
              </a>

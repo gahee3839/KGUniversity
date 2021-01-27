@@ -70,7 +70,7 @@ text-align: center;
 		</a>
 	 </c:if>
 	 <c:forEach begin="${pageMaker.startPage}" end ="${pageMaker.endPage}" var ="idx">
-		<li<c:out value ="${pageMaker.purPaging.page == idx ? ' class=active' : ''}"/>>
+		<li class = "page-item <c:out value ="${pageMaker.purPaging.page == idx ? 'active' : ''}"/>">
 			<a class ="page-link" href = "${path}/book/purchaseList.do${pageMaker.makePurchase(idx)}">${idx}</a>
 		</li>
 	 </c:forEach>

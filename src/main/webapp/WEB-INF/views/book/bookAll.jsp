@@ -12,9 +12,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-<meta name="viewport" content = "width-device-width", initail-scale="1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" 
+	  integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn"
+	  crossorigin="anonymous">
 <title>책 목록</title>
 <style>
  
@@ -41,7 +41,7 @@
 		</select>
 			<input type = "keyword" name = 'keyword' value = "${search.keyword}">
 			<font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">
-			<input type = "submit"  class="btn btn-info" value = "검색" style="height: 34px"></font></font>
+			<input type = "submit"  class="btn btn-primary" value = "검색" style="height: 34px"></font></font>
 </form>
 <br>
 
@@ -53,7 +53,7 @@
 					<img src ="<spring:url value='/resources/img/${List.book_picture}'/>"><br>
 				</div>
 				<div class="book1"><!-- 책 명 -->
-					<a href="${path}/book/getBookInfo.do${pageMaker.makeQuery(pageMaker.supPaging.page)}&book_name=${List.book_name}&user_id=${sessionScope.userId}">${List.book_name}</a><br>
+					<a href="${path}/book/getBookInfo.do${pageMaker.makeQuery(pageMaker.supPaging.page)}&book_name=${List.book_name}&user_id=<%=user_id%>">${List.book_name}</a><br>
 				</div>
 				<div class="book1"><!-- 저자 -->
 					${List.book_writer}

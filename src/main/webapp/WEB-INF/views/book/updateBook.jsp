@@ -48,7 +48,7 @@
 		<label for="mokcha1">목차:</label><br><br>
 			<textarea rows="5" cols="50" id="mok1" name="book_mokcha">${bvo.book_mokcha}</textarea>
 	</div>  
-	<div class="form-group"  style = "width : 50px">
+	<div class="form-group"  style = "width : 150px">
 		<label for="inventory1">재고:</label><br><br>
 			<input type="text" class="form-control" id="inventory1" name="book_inventory" value = "${bvo.book_inventory}">
 	</div>  

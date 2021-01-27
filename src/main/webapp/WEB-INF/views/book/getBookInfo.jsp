@@ -19,7 +19,7 @@
 <title>책 상세내용</title>
 <style>
 .container2 ul li { display:inline-block; margin:auto; text-align: left;}
-  div.pic img { width:370px; height:370px;
+  div.pic img { width:320px; height:320px;
     position: relative;
  top:50px;
             }
@@ -78,19 +78,15 @@
 		<table>
 			<tbody>
 				<tr>
-					<th>판매가</th>
+					<th>판매가:&nbsp;</th>
 					 <td class="price"> ${bvo.book_price}원</td>
 				</tr>
 				<tr>
-					<th>글쓴이</th>
+					<th>글쓴이:&nbsp;</th>
 					<td>${bvo.book_writer}</td>
 				</tr>
 				<tr>
-					<th>재고</th>
-					<td>${bvo.book_inventory}</td>
-				</tr>
-				<tr>
-					<th>구매수량</th>
+					<th>수량:&nbsp;</th>
 					<td>
 					<form action = "kakao.do" method = "GET">
 			<input type="hidden" name="user_id" id ="user_id" value="<%=user_id%>">

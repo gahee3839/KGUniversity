@@ -2,24 +2,39 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<jsp:include page="../include/header.jsp" />
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>비밀번호변경</title>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-	<h2>비밀번호변경</h2>
 	<br>
-	<form action="/www/member/updatePw.do" onsubmit="return validate()" method="POST">
+	<br>
+	<div class="col-sm-8" style="text-align: center;">
+	<h1>비밀번호변경</h1>
+	<br>
+	<div class="row">
+	<form action="/www/member/updatePw.do" onsubmit="return validate()" method="POST" style="margin: auto; text-align: center;">
+		<div class="form-group row" >
 		<input type="hidden" id="userId" name ="userId" value="${sessionScope.userId}">
-		<label>현재비밀번호</label> <input type="password" id="oldPw" required>
+		<label>현재비밀번호</label> &nbsp;&nbsp; 
+		<input type="password" id="oldPw" required>
+		</div>
 		<div id="pwChkMsg"></div>
-		<label>변경할비밀번호</label> <input type="password" id="userPw" name="userPw" disabled required><br>
+		
+		<div class="form-group row" >
+		<label>변경할비밀번호</label>&nbsp;&nbsp; 
+		<input type="password"  id="userPw" name="userPw" disabled required>
 		<div id="newPwChkMsg"></div>
-		<input type="submit" id="updatePwSubmit" value="비밀번호 변경">
-		<a href="/www/member/mypage.do?userId=${sessionScope.userId}"><input type="button" value="취소" ></a>
+		</div>
+		<br><br>
+		<input type="submit" class="btn btn-primary" id="updatePwSubmit" value="비밀번호 변경">
+		<a href="/www/member/mypage.do?userId=${sessionScope.userId}"><input type="button" class="btn btn-secondary" value="취소" ></a>
 	</form>
-
+	</div>
+</div>
 <script type="text/javascript">
 //현재비밀번호, 새비밀번호 각각이 조건에 부합하면true / 그렇지 못하면 false
 //배열의 모든 요소가 true여야 회원가입가능

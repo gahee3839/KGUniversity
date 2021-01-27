@@ -55,8 +55,8 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com"/>
 		<property name="port" value="587"/>
-		<property name="username" value="official.KGUniversity@gmail.com"/>
-		<property name="password" value="KGKGKG1111"/>
+		<property name="username" value="official.KGUniv@gmail.com"/>
+		<property name="password" value="itbank1111"/>
 		<property name="defaultEncoding" value="UTF-8"/>
 		<property name="javaMailProperties">
 			<props>

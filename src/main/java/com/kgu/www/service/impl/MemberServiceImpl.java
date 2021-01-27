@@ -73,6 +73,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.idChk(userId);
 	}
 
+	//이메일중복체크
+	@Override
+	public int emailChk(String email) {
+		return memberDAO.emailChk(email);
+	}
+	
 	//닉네임중복체크
 	@Override
 	public int nickChk(String nickname) {
@@ -110,5 +116,7 @@ public class MemberServiceImpl implements MemberService {
 		}	
 		return sb.toString();
 	}
+
+
 	
 }

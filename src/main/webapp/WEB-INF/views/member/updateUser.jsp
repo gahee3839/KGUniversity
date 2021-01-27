@@ -3,15 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+<jsp:include page="../include/header.jsp" />
 <head>
 <meta charset="UTF-8">
 <title>회원정보수정</title>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
+	<br><br>
+	<div class="col-sm-6" style="text-align:center;">
 	<h2>회원정보 수정</h2>
+	<br>
 	<form action="/www/member/updateUser.do" method="post" onsubmit="return validate()">
-		<table border="2">
+		<table class="table table-hover">
 			<input type="hidden" id="userId" name="userId" value="${vo.userId}">
 			<tr>
 				<td>이름</td>
@@ -24,6 +28,7 @@
 				<td>닉네임</td>
 				<td>
 					<input type="text" id="nickname" name="nickname" value="${vo.nickname}">
+					<!-- <input type="button"  class="btn btn-outline-primary btn-sm" value="중복확인" > -->
 					<div id="nickChkMsg"></div>
 				</td>
 			</tr>
@@ -31,17 +36,19 @@
 				<td>이메일</td>
 				<td>
 					<input type="text" id="email" name="email" value="${vo.email}">
-					<div id="emailValMsg"></div>
+					<!-- <input type="button"  class="btn btn-outline-primary btn-sm" value="중복확인" > -->
+					<div id="emailChkMsg"></div>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" id="updateSubmit" value="수정">
-					<a href="/www/member/mypage.do?userId=${vo.userId}"><input type="button" value="취소" ></a>
+					<input type="submit" class="btn btn-primary" id="updateSubmit" value="수정">
+					<a href="/www/member/mypage.do?userId=${vo.userId}"><input type="button"  class="btn btn-secondary" value="취소" ></a>
 				</td>
 			</tr>
 		</table>
 	</form>
+	</div>
 	
 <script type="text/javascript">
 //아이디,이메일,닉네임 각각이 조건에 부합하면true / 그렇지 못하면 false
@@ -68,7 +75,6 @@ $('#userName').blur(function(){
 //닉네임 중복체크, 유효성검사 함수
 $('#nickname').blur(function(){
 		var nickname = $("#nickname").val();
-		
 		$.ajax({
 			type: 'GET',
 			url: '/www/member/nickChk.do?nickname='+nickname,
@@ -97,21 +103,36 @@ $('#nickname').blur(function(){
 	})
 
 //이메일 유효성검사 함수
-$('#email').blur(function(){
+$('#email').onchange(function(){
 	var email = $('#email').val();
 	//이메일 정규식 ID는 숫자영대소문자-_허용 @ 영대소문자 . 영대소문자(2-3글자)
 	var emailRE = /^[0-9a-zA-Z_-]+@[a-zA-Z]+.[a-zA-Z]{2,3}$/;
 	
-	if(emailRE.test(email)){
-		ckval[2] = true;
-		$("#email").css('border','3px solid green');
-		$('#emailValMsg').text('');
-	}else{
-		ckval[2] = false;
-		$("#email").css('border','3px solid red');
-		$('#emailValMsg').text('이메일은 xxx@xxx.xxx 형식으로 입력해주세요');
-		$('#emailValMsg').css('color','red');
-	}
+	$.ajax({
+		type: 'GET',
+		url: '/www/member/emailChk.do?email='+email,
+		success: function(result) {
+			if(result == 1){
+				ckval[0] = false;
+				$("#email").css('border','3px solid red');
+				$('#emailChkMsg').text('이미 사용중인 이메일입니다.');
+				$('#emailChkMsg').css('color','red');
+			}else{
+				if(emailRE.test(email)){
+					ckval[0] = true;
+					$("#email").css('border','3px solid green');
+					$('#emailChkMsg').text('');
+					$('#emailChkMsg').css('color','green');
+				}else{
+					ckval[3] = false;
+					$("#email").css('border','3px solid red');
+					$('#emailChkMsg').text('이메일은 xxx@xxx.xxx 형식으로 입력해주세요');
+					$('#emailChkMsg').css('color','red');
+				}
+				
+			}
+		} 
+	})
 })
 
 //제출버튼 눌렀을때 전체 유효성검사

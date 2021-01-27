@@ -1,9 +1,13 @@
+<%@page import="javax.mail.Session"%>
+<%@page import="org.springframework.web.context.request.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<%@ page session="false"%>
+<%
+	String user_id = (String) session.getAttribute("userId");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,79 +16,84 @@
 	integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn"
 	crossorigin="anonymous">
 <meta charset="UTF-8">
-<meta name="viewport" content="width-device-width" initail-scale="1">
 <title>책 상세내용</title>
 <style>
-.grid {
-	width: 500px;
-	margin: 0 auto;
-	text-align: center;
-	font-size: 0;
-	position: relative;
-	left: 400px;
-	top: 40px;
+.container2 ul li { display:inline-block; margin:auto; text-align: left;}
+  div.pic img { width:370px; height:370px;
+    position: relative;
+ top:50px;
+            }
+            .grid {
+ 
+        width: 500px;
+        margin: 0 auto;
+        
+        text-align: center;
+        font-size: 0; 
+        position: relative;
+        left : 400px;
+        top: 30px;
+       
 }
-
+    
 .grid_item {
-	width: 100px;
-	height: 100px;
-	display: inline-block;
-	vertical-align: top;
+        width: 100px;
+        height: 100px;
+        display: inline-block; 
+        vertical-align: top;
+       
 }
-
-.container2 ul li {
-	display: inline-block;
-	margin: 10px;
-	width: 400px;
-}
-
-div.pic img {
-	width: 200px;
-	height: 200px;
-}
-
-div.book1 {
-	padding: 10px 0;
-	text-align: center;
-}
-
-div.book1 a {
-	color: #000;
-}
-
-.pagination {
-	justify-content: center;
-}
+     div.book1{
+     position: relative;
+     left:100px;
+     bottom: 50px;
+     
+    }   
+     
+.container2{width:1200px;}
+.book1 table td { padding:14px 0; font-size: 15px; color:#444; text-align: left;}
+.book1 table td.price { font-size: 22px;}
 </style>
 </head>
 <body>
+
 	<jsp:include page="../include/header.jsp" />
 	<br>
 	<br>
 
+<div class="all" align="center">
+<div class="container2" >
 <div align="center">
-
-		<div class="container1">
+<ul>
+<li>
 			<div class="pic"><!-- 책 사진 -->
-				<img src="<spring:url value='/resources/img/${List.book_picture}'/>">
+				<img src="<spring:url value='/resources/img/${bvo.book_picture}'/>">
 			</div>
-		</div>
-	<br>
+			</li>
+			<li>
 		<div class="book1"> <!-- 책 명 -->
-			<h5>[책 제목] : ${bvo.book_name}</h5>
-		</div>
-	<br>
-		<div class="book1"> <!-- 저자 -->
-			<h5>[글쓴이(저자)] : ${bvo.book_writer}</h5>
-		</div>
-	<br>
-		<div class="book1"> <!-- 가격 -->
-			<h5>[책 가격] : ${bvo.book_price}원</h5>
-		</div>
-	<br>
+			<h2><pre>${bvo.book_name}</pre></h2>
+			<hr>
 	
-		<form action = "kakao.do" method = "GET">
-			<input type="hidden" name="user_id" id ="user_id" value="user_id">
+		<table>
+			<tbody>
+				<tr>
+					<th>판매가</th>
+					 <td class="price"> ${bvo.book_price}원</td>
+				</tr>
+				<tr>
+					<th>글쓴이</th>
+					<td>${bvo.book_writer}</td>
+				</tr>
+				<tr>
+					<th>재고</th>
+					<td>${bvo.book_inventory}</td>
+				</tr>
+				<tr>
+					<th>구매수량</th>
+					<td>
+					<form action = "kakao.do" method = "GET">
+			<input type="hidden" name="user_id" id ="user_id" value="<%=user_id%>">
 			<input type="hidden" name="book_num" id ="book_num" value="${bvo.book_num}">
 			<input type="hidden" name="book_picture" id ="book_picture" value="${bvo.book_picture}">
 			<input type="hidden" name="book_name" id ="book_name" value="${bvo.book_name}">
@@ -102,52 +111,32 @@ div.book1 a {
 				<input type = "button" value = "품절" disabled="disabled">
 			</c:if>
 		</form>
-		(재고 : ${bvo.book_inventory})
-		<br><br>
-		<div class="container2">
-			<ul>
-				<li>
-					<div class="card border-primary mb-3" style="max-width: 20rem;">
-						<div class="card-header">
-							<font style="vertical-align: inherit;"> 
-							<font style="vertical-align: inherit;">
-								<h5>책 소개</h5>
-								</font>
-							</font>
-						</div>
-						
-						<p class="card-text">
-							<font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;"><pre>
-							 <c:out value="${bvo.book_info}"/>
-							</pre></font></font>
-						</p>
-					</div>
-				</li>
+		</td>
+		</tr>
+		</tbody>
+		</table>
+		</div></li></ul></div>
 
-				<li>
-					<div class="card border-primary mb-3" style="max-width: 20rem;">
-						<div class="card-header">
-							<font style="vertical-align: inherit;"> 
-							<font style="vertical-align: inherit;">
-							 <h5>목차</h5></font></font>
-						</div>
+	<ul class = "nav nav-tabs">
+  <li class = "nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#home"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"> 책 소개 </font> </font> </a>
+  </li>
+  <li class = "nav-item">
+    <a class="nav-link" data-toggle="tab" href="#profile"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"> 목차 </font> </font> </a>
+  </li>
+  </ul></div>
+  <div id = "myTabContent"class = "tab-content">
+  <div class = "tab-pane fade active show"id = "home">
+    <pre style = "overflow : auto; height : 200px;"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">${bvo.book_info}
+     </font></font></pre>
+</div>
 
-						<p class="card-text">
-							<font style="vertical-align: inherit;"> 
-							<font style="vertical-align: inherit;">
-							<pre><c:out value="${bvo.book_mokcha}"/></pre>
-							</font></font>
-						</p>
-					</div>
-				</li>
-			</ul>
-		</div>
+  <div class = "tab-pane fade"id = "profile">
+    <pre style = "overflow : auto; height : 200px;"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">${bvo.book_mokcha}</font></font></pre>
+</div>
+</div>
 
-		<%
-			int admin = 0;
-			if (admin == 1) {
-		%>
+<%	if(!user_id.equals("bookadmin")) { %>
 		<form action="${path}/book/bookAll.do?page=${supPaging.page}&perPageNum=${supPaging.perPageNum}">
 			<input type="hidden" name="page" value="${supPaging.page}">
 			<input type="hidden" name="perPageNum" value="${supPaging.perPageNum}">
@@ -155,9 +144,7 @@ div.book1 a {
 			<font style = "vertical-align : inherit;">
 			<font style = "vertical-align : inherit;">목록 </font></font></button>
 		</form>
-		<%
-			} else if (admin == 0) {
-		%>
+	<%} else { %>
 		<!-- 관리자 로그인시 보여야할 버튼 -->
 		<div class="grid">
 		 <div class="grid_item first">
@@ -192,11 +179,8 @@ div.book1 a {
 			</button>
 			</form>
 		</div>
-	</div>
-		<%
-			}
-		%>
-		<!-- ----------------------------------------------------------------------  -->
+ 	   </div>
+	<%} %>
 </div>
 </body>
 </html>

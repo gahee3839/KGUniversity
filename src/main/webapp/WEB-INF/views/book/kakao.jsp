@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
-<c:set var="path" value ="${pageContext.request.contextPath}"/>
-<%-- <%@ page session="false" %> --%> 
+<c:set var="path" value ="${pageContext.request.contextPath}"/> 
 <%
 	String user_id = (String) request.getParameter("user_id");
 	int book_num = (int) Integer.parseInt(request.getParameter("book_num"));
@@ -79,13 +78,6 @@
         
     });
     </script>
-    
-    <%-- <%=user_id%> : ${user_id}<br>
-    <%=book_num%> : ${book_num} <br>
-    <%=book_picture%> : ${book_picture}<br>
-    <%=book_name%> : ${book_name}<br>
-    <%=book_inventory%> : ${book_inventory}<br>
-    <%=purchase_amount%> : ${purchase_amount}<br> --%>
     
 </body>
 </html>

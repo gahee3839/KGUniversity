@@ -5,6 +5,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value ="${pageContext.request.contextPath}"/>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%
+	String user_id = (String) session.getAttribute("userId");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +15,10 @@
 <title>책 수정페이지</title>
 </head>
 <body>
-	${bvo.book_num}
+<jsp:include page="../include/header.jsp" />
+	<br>
+	<br>
+
 	<div class = container style="margin : auto; width:700px; align : center">
 		<form action ="${path}/book/updateBook.do" method = "post" enctype="multipart/form-data">
 		<input  type = "hidden" name = "page" value ="${supPaging.page}">
@@ -48,8 +54,8 @@
 	</div>  
    
 	
-	<input style = "margin:8px" class="btn btn-success" type = "submit" value = "등록" onclick="return confirm('등록하시겠습니까?')">
-	<input style = "margin:8px" class="btn btn-warning" type = "button" value = "취소" onclick="history.back(-1)">
+	<input style = "margin:8px" class="btn btn-primary" type = "submit" value = "등록" onclick="return confirm('등록하시겠습니까?')">
+	<input style = "margin:8px" class="btn btn-outline-secondary" type = "button" value = "취소" onclick="history.back(-1)">
 	</form>
 </div>
 </body>

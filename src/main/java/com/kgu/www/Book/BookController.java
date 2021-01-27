@@ -34,6 +34,7 @@ public class BookController {
 	private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 	
 	private final BookService bookService;
+	private String savepoint ="C:\\Users\\pc\\Desktop\\KGUniversity\\src\\main\\webapp\\resources\\img";
 	
 	@Inject
 	public BookController(BookService bookService) {
@@ -55,7 +56,6 @@ public class BookController {
 		String book_picture = "";
 		if(!book_file.isEmpty()) {
 			book_picture = book_file.getOriginalFilename();
-			String savepoint ="C:\\Users\\pc\\Desktop\\KGUniversity\\KGUniversity\\src\\main\\webapp\\resources\\img";
 			File save = new File(savepoint,book_file.getOriginalFilename());
 			book_file.transferTo(save);
 		}
@@ -82,7 +82,6 @@ public class BookController {
 		pageMaker.setTotalCount(bookService.countBook(supPaging));
 		model.addAttribute("supPaging", bookService.supPaging(supPaging));
 		model.addAttribute("pageMaker", pageMaker);
-		
 		return "/book/bookAll";
 	}
 	
@@ -110,7 +109,6 @@ public class BookController {
 			, @ModelAttribute("bvo") BookVO bvo,SupPaging supPaging) throws Exception {
 		logger.info("수정처리..");
 		String book_picture = "";
-		String savepoint ="C:\\Users\\pc\\Desktop\\KGUniversity\\KGUniversity\\src\\main\\webapp\\resources\\img";
 		int book_num = (int) Integer.parseInt(hashMap.get("book_num"));
 		System.out.println();
 		BookVO bvo2 = bookService.getBookInfoN(book_num);
@@ -173,9 +171,8 @@ public class BookController {
 	
 	//결제 처리
 	@RequestMapping(value = "/kakao.do", method = RequestMethod.GET)
-	public String kakao(@RequestParam HashMap<String,String> hashMap, Model model, @ModelAttribute("bvo") BookVO bvo) {
+	public String kakao(@RequestParam HashMap<String,String> hashMap, Model model, @ModelAttribute("bvo") BookVO bvo, String user_id) {
 		int book_num = bvo.getBook_num();
-		String user_id = hashMap.get("user_id");
 		String book_name = bvo.getBook_name();
 		String book_picture = bvo.getBook_picture();
 		int book_inventory = bvo.getBook_inventory();
@@ -194,8 +191,7 @@ public class BookController {
 	//구입 처리
 	@RequestMapping(value = "/purchase.do", method = RequestMethod.GET)
 	public String purchaseInsertForm(@RequestParam HashMap<String,String> hashMap,
-			@ModelAttribute("bvo") BookVO bvo,SupPaging supPaging, Model model) throws Exception {
-		String user_id = hashMap.get("user_id");
+			@ModelAttribute("bvo") BookVO bvo,SupPaging supPaging, Model model, String user_id) throws Exception {
 		String book_name = bvo.getBook_name();
 		String book_picture = bvo.getBook_picture();
 		int book__tamount = bvo.getBook_inventory();
@@ -228,7 +224,7 @@ public class BookController {
 	
 	//유저가 구매한 책 목록
 	@RequestMapping(value = "/userPurchase.do", method = RequestMethod.GET)
-	public String userPurchase(@RequestParam("user_id") String user_id, @ModelAttribute("userPurchase")UserPurchase userPurchase, PurPaging purPaging, Model model) throws Exception {
+	public String userPurchase(String user_id, @ModelAttribute("userPurchase")UserPurchase userPurchase, PurPaging purPaging, Model model) throws Exception {
 			System.out.println(user_id);
 			userPurchase.setUser_id(user_id);
 			PageMaker pageMaker = new PageMaker();

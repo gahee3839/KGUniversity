@@ -4,7 +4,7 @@
 
 <insert id="bookInsertForm">
 		INSERT INTO  book 
-     	VALUES (book_num_seq.NEXTVAL, #{book_picture}, UPPER(#{book_name}), #{book_writer}, #{book_price},
+     	VALUES (book_num_seq.NEXTVAL, #{book_picture}, #{book_name}, #{book_writer}, #{book_price},
      	#{book_info}, #{book_mokcha}, #{book_inventory})
 </insert>
 
@@ -23,7 +23,7 @@
 <update id="updateBook">
 		UPDATE book
 		SET book_picture = #{book_picture}
-			, book_name = UPPER(#{book_name})
+			, book_name = #{book_name}
 			, book_writer = #{book_writer}
 			, book_price = #{book_price}
 			, book_info = #{book_info}
@@ -103,10 +103,10 @@
 <sql id ="search">
 	<if test="searchType !=null">
 		<if test = "searchType == 'book_name'.toString()">
-			AND book_name LIKE UPPER('%'||#{keyword}||'%')
+			AND UPPER(book_name) LIKE UPPER('%'||#{keyword}||'%')
 		</if>
 		<if test = "searchType == 'book_writer'.toString()">
-			AND book_writer LIKE UPPER('%'||#{keyword}||'%')
+			AND UPPER(book_writer) LIKE UPPER('%'||#{keyword}||'%')
 		</if>
 	</if>
 </sql>

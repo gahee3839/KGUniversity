@@ -51,6 +51,7 @@
     }   
      
 .container2{width:1200px;}
+
 .book1 table td { padding:14px 0; font-size: 15px; color:#444; text-align: left;}
 .book1 table td.price { font-size: 22px;}
 </style>
@@ -60,7 +61,7 @@
 	<jsp:include page="../include/header.jsp" />
 	<br>
 	<br>
-
+<% if(user_id != null) {%>
 <div class="all" align="center">
 <div class="container2" >
 <div align="center">
@@ -112,6 +113,7 @@
 		</tbody>
 		</table>
 		</div></li></ul></div>
+		<br><br>
 
 	<ul class = "nav nav-tabs">
   <li class = "nav-item">
@@ -176,7 +178,69 @@
 			</form>
 		</div>
  	   </div>
+ 	  </div>
 	<%} %>
+<%} else { %>
+<div class="all" align="center">
+<div class="container2" >
+<div align="center">
+<ul>
+<li>
+			<div class="pic"><!-- 책 사진 -->
+				<img src="<spring:url value='/resources/img/${bvo.book_picture}'/>">
+			</div>
+			</li>
+			<li>
+		<div class="book1"> <!-- 책 명 -->
+			<h2><pre>${bvo.book_name}</pre></h2>
+			<hr>
+		<table>
+			<tbody>
+				<tr>
+					<th>판매가:&nbsp;</th>
+					 <td class="price"> ${bvo.book_price}원</td>
+				</tr>
+				<tr>
+					<th>글쓴이:&nbsp;</th>
+					<td>${bvo.book_writer}</td>
+				</tr>
+				<tr>
+					<th>수량:&nbsp;</th>
+					<td>로그인 후 이용해 주세요.</td>
+				</tr>
+		</tbody>
+		</table>
+		</div></li></ul></div>
+		<br><br>
+
+		<ul class = "nav nav-tabs">
+  <li class = "nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#home"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"> 책 소개 </font> </font> </a>
+  </li>
+  <li class = "nav-item">
+    <a class="nav-link" data-toggle="tab" href="#profile"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"> 목차 </font> </font> </a>
+  </li>
+  </ul>
+ </div>
+ 
+<div id = "myTabContent"class = "tab-content">
+	<div class = "tab-pane fade active show"id = "home">
+    	<pre style = "overflow : auto; height : 200px;"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">${bvo.book_info}
+     </font></font></pre>
+	</div>
+	<div class = "tab-pane fade"id = "profile">
+    	<pre style = "overflow : auto; height : 200px;"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">${bvo.book_mokcha}</font></font></pre>
+	</div>
 </div>
+		<form action="${path}/book/bookAll.do?page=${supPaging.page}&perPageNum=${supPaging.perPageNum}">
+			<input type="hidden" name="page" value="${supPaging.page}">
+			<input type="hidden" name="perPageNum" value="${supPaging.perPageNum}">
+			<button type = "submit"class = "btn btn-primary">
+			<font style = "vertical-align : inherit;">
+			<font style = "vertical-align : inherit;">목록 </font></font></button>
+		</form>
+</div>
+	<%}%>
+
 </body>
 </html>

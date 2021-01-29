@@ -119,5 +119,10 @@ public class BookServiceImpl implements BookService {
 	public int countSearchedPurchase(UserPurchase userPurchase) throws Exception {
 		return bookDAO.countSearchedPurchase(userPurchase);
 	}
-
+	
+	//책 이름 중복확인
+	@Override
+	public int bookChk(String book_name) throws Exception {
+		return bookDAO.bookChk(book_name);
+	}
 }

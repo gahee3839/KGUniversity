@@ -10,6 +10,7 @@
 %>
 <!DOCTYPE html>
 <html>
+<jsp:include page="../include/header.jsp" />
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" 
@@ -29,7 +30,6 @@
 </style>
 </head>
 <body>
-<jsp:include page="../include/header.jsp" />
 	<br>
 	<br>
 
@@ -94,6 +94,5 @@
  </ul>
 </div>
 </div>
-
 </body>
 </html>

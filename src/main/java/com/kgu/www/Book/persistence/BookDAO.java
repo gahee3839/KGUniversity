@@ -43,5 +43,6 @@ public interface BookDAO {
 	List<PurchaseVO> userPurchase(UserPurchase userPurchase) throws Exception; //구매한 책 목록 페이징 처리
 	
 	int countSearchedPurchase(UserPurchase userPurchase) throws Exception; //유저가 구매한 책 목록
-
+	
+	int bookChk(String book_name) throws Exception; //책 이름 중복 확인
 }

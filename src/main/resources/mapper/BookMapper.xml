@@ -165,4 +165,10 @@
 	]]>
 </select>
 
+<select id="bookChk" resultType="int">
+		SELECT count(*)
+		FROM book
+		WHERE book_name = #{book_name}
+</select>
+
 </mapper>

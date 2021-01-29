@@ -121,6 +121,11 @@ public class BookDAOImpl implements BookDAO {
 	public int countSearchedPurchase(UserPurchase userPurchase) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+".countSearchedPurchase", userPurchase);
 	}
-
+	
+	//책 이름 중복확인
+	@Override
+	public int bookChk(String book_name) {
+		return sqlSession.selectOne(NAMESPACE+".bookChk", book_name);
+	}
 
 }

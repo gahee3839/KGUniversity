@@ -1,7 +1,5 @@
 package com.kgu.www;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -9,15 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import com.kgu.www.Book.paging.Search;
-import com.kgu.www.Book.paging.SupPaging;
-import com.kgu.www.Book.paging.UserPurchase;
 import com.kgu.www.Book.persistence.BookDAO;
 import com.kgu.www.Book.vo.BookVO;
-import com.kgu.www.Book.vo.PurchaseVO;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,7 +22,7 @@ public class BookDAOTest {
 	private BookDAO bdao;
 	
 	//db 입력
-	@Test
+	/*@Test
 	public void testCreate() throws Exception {
 		BookVO bvo = new BookVO();
 		for(int i = 1; i<=1000; i++) {
@@ -44,7 +36,7 @@ public class BookDAOTest {
 		
 		bdao.bookInsertForm(bvo);
 		}
-	}
+	}*/
 	
 	/*@Test
 	public void purchaseInsert() throws Exception{
@@ -112,7 +104,7 @@ public class BookDAOTest {
 		}
 	}*/
 	
-	@Test //유저 구매 목록 페이징처리
+	/*@Test //유저 구매 목록 페이징처리
 	public void searchPurchase() throws Exception {
 		UserPurchase up = new UserPurchase();
 		String user_id = "ysm9203";
@@ -127,5 +119,15 @@ public class BookDAOTest {
 		
 		logger.info("=====================");
 		logger.info("searched book count" + bdao.countSearchedPurchase(up));
+	}*/
+	
+	@Test //책 이름 중복확인
+	public void bookChk() throws Exception { 
+		BookVO bvo = new BookVO();
+		String book_name = "Check";
+		
+		int cnt = bdao.bookChk(book_name);
+		logger.info("book count : "+bdao.bookChk(book_name));
+		
 	}
 }

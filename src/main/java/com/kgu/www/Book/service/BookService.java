@@ -43,5 +43,7 @@ public interface BookService {
 	
 	int countSearchedPurchase(UserPurchase userPurchase) throws Exception; //유저가 구매한 책 총 갯수
 	
+	int bookChk(String book_name) throws Exception; //책 이름 중복확인
+	
 	
 }

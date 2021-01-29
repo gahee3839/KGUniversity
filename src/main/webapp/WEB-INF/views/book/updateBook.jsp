@@ -10,14 +10,14 @@
 %>
 <!DOCTYPE html>
 <html>
+<jsp:include page="../include/header.jsp" />
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
 <meta charset="UTF-8">
-<title>책 수정페이지</title>
+<title>책 수정 페이지</title>
 </head>
 <body>
-<jsp:include page="../include/header.jsp" />
-	<br>
-	<br>
+<br><br>
 
 	<div class = container style="margin : auto; width:700px; align : center">
 		<form action ="${path}/book/updateBook.do" method = "post" enctype="multipart/form-data">
@@ -29,8 +29,8 @@
    					<input type="file" class="form-control" id="picture1" name="book_file">
  	</div>
  	<div class="form-group">
-            <label for="name1">책 제목:</label>
-                 <input type="text" class="form-control" id="name1" name="book_name" value = "${bvo.book_name}">
+            <label for="book_name">책 제목:</label>
+                 <input type="text" class="form-control" id="book_name" name="book_name" value = "${bvo.book_name}">
               </div>
 	<div class="form-group">
     	<label for="writer">저자:</label>
@@ -58,5 +58,6 @@
 	<input style = "margin:8px" class="btn btn-outline-secondary" type = "button" value = "취소" onclick="history.back(-1)">
 	</form>
 </div>
+
 </body>
 </html>

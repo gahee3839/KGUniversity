@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -233,6 +234,14 @@ public class BookController {
 			model.addAttribute("pageMaker", pageMaker);
 			model.addAttribute("pvo", bookService.userPurchase(userPurchase));
 		return "/book/userPurchase";
+	}
+	
+	//책 이름 중복확인
+	@ResponseBody
+	@RequestMapping(value="bookChk.do", method=RequestMethod.GET)
+	public int bookChk(@RequestParam("book_name") String book_name) throws Exception {
+		int cnt = bookService.bookChk(book_name);
+		return cnt;
 	}
 	
 }

@@ -9,6 +9,10 @@
 <body>
 	<%@include file="menu.jsp" %>
 	<h2>메인화면</h2>
+	<script>
+		/* location.href="FreeBoard_List.do" */
+		/* location.href="cssTest.do" */
+	</script>
 	<!-- <script>
 		location.href="FreeBoard_List.do"
 	</script> -->

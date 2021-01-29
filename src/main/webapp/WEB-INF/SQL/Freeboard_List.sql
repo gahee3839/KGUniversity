@@ -1,22 +1,23 @@
-
--- 권태영 작성 : 자유게시판 글목록 SQL
 DROP TABLE Freeboard_List;
 CREATE TABLE Freeboard_List(
-    FBN_seq     NUMBER      PRIMARY KEY,
-    type        VARCHAR2(20),
-    title       VARCHAR2(50),
-    content     VARCHAR2(1000),
-    writer      VARCHAR2(20),
-    regDate     VARCHAR2(30),
-    hit         NUMBER(10),
-    commentCnt  NUMBER(10)
+    FBN_seq         NUMBER      PRIMARY KEY,
+    type            VARCHAR2(20),		-- 말머리
+    title           NVARCHAR2(50),		-- 제목
+    content         NVARCHAR2(1200),	-- 내용
+    userID          VARCHAR2(20),		-- 작성자ID
+    userNickname    NVARCHAR2(50),		-- 작성자닉네임
+    regDate         VARCHAR2(30),		-- 등록일
+    modifyDate      VARCHAR2(30),		-- 수정일
+    hit             NUMBER(10),			-- 조회수
+    commentCnt      NUMBER(10),			-- 댓글수
+    contentPW       NVARCHAR2(8),		-- 글비밀번호
+    imgName         VARCHAR2(300)		-- 등록된사진이름
 );
+
 DROP SEQUENCE FBN_seq;
 CREATE SEQUENCE FBN_seq
     START WITH 1
     INCREMENT BY 1
-    MAXVALUE 1000000
-    MINVALUE 1
     NOCYCLE;
 
 SELECT * FROM Freeboard_List
@@ -25,64 +26,69 @@ ORDER BY FBN_seq desc;
 COMMIT;
 
 
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type1', 'title1', 'content1', 'writer1', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type2', 'title2', 'content2', 'writer2', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title3', 'content3', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, '질문/답변', '가나다라마바사아자차카타파하', 'content4',  'abcdefghij123456', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title5', 'content5', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title6', 'content6', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title7', 'content7', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title8', 'content8', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title9', 'content9', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title10', 'content10', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title11', 'content11', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title12', 'content12', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title13', 'content13', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title14', 'content14', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title15', 'content15', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title16', 'content16', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title17', 'content17', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title18', 'content18', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title19', 'content19', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title20', 'content20', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title21', 'content21', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title22', 'content22', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title23', 'content23', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title24', 'content24', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title25', 'content25', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title26', 'content26', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title27', 'content27', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title28', 'content28', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title29', 'content29', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title30', 'content30', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type1', 'title31', 'content31', 'writer1', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type2', 'title32', 'content32', 'writer2', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title33', 'content33', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, '질문/답변', '가나다라마바사아자차카타파하', 'content34', 'abcdefghij123456', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title35', 'content35', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title36', 'content36', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title37', 'content37', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title38', 'content38', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title39', 'content39', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title40', 'content40', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title41', 'content41', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title42', 'content42', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title43', 'content43', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title44', 'content44', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title45', 'content45', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title46', 'content46', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title47', 'content47', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title48', 'content48', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title49', 'content49', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title50', 'content50', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title51', 'content51', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title52', 'content52', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title53', 'content53', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title54', 'content54', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title55', 'content55', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title56', 'content56', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title57', 'content57', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title58', 'content58', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 0);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title59', 'content59', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 1);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title60', 'content60', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 2);
-INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'type3', 'title61', 'content61', 'writer3', TO_CHAR(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), 0, 12);
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title1', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title2', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title3', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title4', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title5', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title6', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title7', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title8', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title9', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title10', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title11', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title12', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title13', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title14', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title15', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title16', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title17', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title18', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title19', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title20', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title21', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title22', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title23', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title24', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title25', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title26', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title27', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title28', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title29', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title30', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title31', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title32', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title33', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title34', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title35', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title36', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title37', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title38', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title39', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title40', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title41', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title42', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title43', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title44', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title45', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title46', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title47', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title48', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title49', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title50', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title51', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title52', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title53', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title54', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title55', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title56', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title57', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title58', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title59', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title60', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title61', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title62', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title63', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title64', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+INSERT INTO Freeboard_List VALUES(FBN_seq.NEXTVAL, 'standard', 'title65', 'content1', '', '익명', TO_CHAR(SYSDATE, 'yy/mm/dd hh24:mi:ss'), '', 0, 0, '', '');
+

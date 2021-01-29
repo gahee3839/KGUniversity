@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value ="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <jsp:include page="../include/header.jsp" />
@@ -14,7 +15,7 @@
 	<div class="col-sm-6" style="text-align:center;">
 	<h2>회원정보 수정</h2>
 	<br>
-	<form action="/www/member/updateUser.do" method="post" onsubmit="return validate()">
+	<form action="${path}/member/updateUser.do" method="post" onsubmit="return validate()">
 		<table class="table table-hover">
 			<input type="hidden" id="userId" name="userId" value="${vo.userId}">
 			<tr>
@@ -43,7 +44,7 @@
 			<tr>
 				<td colspan="2">
 					<input type="submit" class="btn btn-primary" id="updateSubmit" value="수정">
-					<a href="/www/member/mypage.do?userId=${vo.userId}"><input type="button"  class="btn btn-secondary" value="취소" ></a>
+					<a href="${path}/member/mypage.do?userId=${vo.userId}"><input type="button"  class="btn btn-secondary" value="취소" ></a>
 				</td>
 			</tr>
 		</table>
@@ -77,7 +78,7 @@ $('#nickname').blur(function(){
 		var nickname = $("#nickname").val();
 		$.ajax({
 			type: 'GET',
-			url: '/www/member/nickChk.do?nickname='+nickname,
+			url: '${path}/member/nickChk.do?nickname='+nickname,
 			success: function(result) {
 				if(result == 1){
 					ckval[1] = false;
@@ -110,7 +111,7 @@ $('#email').onchange(function(){
 	
 	$.ajax({
 		type: 'GET',
-		url: '/www/member/emailChk.do?email='+email,
+		url: '${path}/member/emailChk.do?email='+email,
 		success: function(result) {
 			if(result == 1){
 				ckval[0] = false;

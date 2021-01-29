@@ -3,15 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link href='<c:url value="/resources/css/bootstrap.css" />' rel="stylesheet">
+<link href='<c:url value="/resources/css/bootstrap.min.css" />' rel="stylesheet">
+
 <meta charset="UTF-8">
 <title>KG_University</title>
 
 <style>
-	textarea {
-		width: 100%;
-		height: 400px;
-		resize: none;
-	}
 	a {text-decoration:none}
 	table{
 		margin-left:auto;
@@ -22,61 +21,42 @@
 		width:1500px;
 		height:100%;
 	}
-	#header{
-		background-color: gray;
-		height:50px;
-	}
 	#blank{
-		background-color: red;
 		width:100%;
 		height:100px;
 		float:left;
 	}
 	#nav1{
-		background-color: green;
 		width:20%;
 		height:1200px;
 		float:left;
 	}
 	#section1{
-		background-color: yellow;
 		width:80%;
 		height:1200px;
 		float:left;
 	}
-	#footer{
-		background-color: olive;
-	}
-	#header, #blank, #nav1, #section1, #footer{text-align: center;}
+	#blank, #nav1, #section1{text-align: center;}
 </style>
 
 </head>
 <body>
-	<script>
-		function return_List(){
-			if(confirm("정말로 나가시겠습니까?\n작성중이던 내용은 삭제됩니다")){
-				location.href="FreeBoard_List.do"
-			}
-		}
-	</script>
-
+	<jsp:include page="../include/header.jsp" />
+	
 	<div id="div_root">
-		<div id="header">
-			<h2>header</h2>
-		</div>
 		<div id="blank">
 			<h2>　</h2>
 		</div>
 		<div id="nav1">
-			<hr width="70%">
+			<hr width="70%" style="border: solid 1px;">
 			<h1 style="font-weight: bold;">게시판</h1>
-			<hr width="70%">
+			<hr width="70%" style="border: solid 1px;">
 			
-			<table border="0" style="text-align: left;">
+			<table width="50%" border="0" style="text-align: left;">
 				<tr>
 					<td width="170" height="30">
 						<font size="4" style="font-weight: bold;">
-							* <a href="">공지사항</a>
+							* <a href="Notice_List.do">공지사항</a>
 						</font>
 					</td>
 				</tr>
@@ -90,19 +70,20 @@
 				<tr>
 					<td height="30">
 						<font size="4" style="font-weight: bold;">
-							* <a href="">정보게시판</a>
+							* <a href="InfoBoard_List.do">정보게시판</a>
 						</font>
 					</td>
 				</tr>
 				<tr>
 					<td height="30">
 						<font size="4" style="font-weight: bold;">
-							* <a href="">동아리게시판</a>
+							* <a href="ClubBoard_List.do">동아리게시판</a>
 						</font>
 					</td>
 				</tr>
 			</table>
 		</div>
+		
 		<div id="section1">
 			<br>
 			<table border="0" width="90%">
@@ -111,31 +92,22 @@
 						<font size="6" style="font-weight: bold;">자유게시판</font>
 					</td>
 					<td style="text-align: right;">
-						<input type="button" value="목록" onclick="return_List();"
-								style="font-size: 18px;
-										font-weight:bold;
-										padding: 5px 10px;
-										border-radius: 5px;
-										background-color: aqua;">
+						<button type="button" class="btn btn-primary"
+								onclick="return_List();"
+								style="font-size: 18px; font-weight:bold;">목록</button>
 					</td>
 				</tr>
 			</table>	
-			<hr width="90%" style="border-style: solid; border-color: blue;"><br>
+			<hr width="90%" style="border: solid 1px;">
 			
-		<!-- 등록임시 -->
 			<form action="FreeBoard_Upload.do" method="post" enctype="multipart/form-data">
 			<table border="0" width="90%">
-				<tr>
-					<td colspan="2" style="text-align: left;">
-						<input type="password" name="contentPW" placeholder="비밀번호">
-					</td>
-				</tr>
-				<tr>
-					<td width="65" height="45" style="text-align: left; font-weight: bold;">
+				<tr style="margin-top: 10px;">
+					<td width="130" height="45" style="text-align: left; font-weight: bold;">
 						<font size="5">분류</font>
 					</td>
 					<td style="text-align: left;">
-						<select name="contentType">
+						<select name="contentType" class="form-control" id="exampleSelect1" style="width: 200px;">
 							<option value="standard">일반</option>
 							<option value="university">대학</option>
 							<option value="daily">일상</option>
@@ -148,31 +120,52 @@
 						<font size="5">제목</font>
 					</td>
 					<td style="text-align: left;">
-						<input type="text" name="contentTitle" placeholder="제목을 입력해 주세요">
+						<input type="text" name="contentTitle" maxlength="50"
+								placeholder="제목(최대 50자)" class="form-control" id="inputDefault">
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" height="45" style="text-align: left;">
-						<input type="file" name="file"><br>
+					<td height="45" style="text-align: left; font-weight: bold;">
+						<font size="5">비밀번호</font>
+					</td>
+					<td style="text-align: left;">
+						<input type="password" name="contentPW" maxlength="8"
+								placeholder="비밀번호(최대 8자)" class="form-control" id="inputDefault">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" height="65" style="text-align: left;">
+						<input type="file" name="file" accept="image/*">
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" height="420" style="text-align: left; margin-top: 40px;">
-						<textarea placeholder="내용을 입력해 주세요"></textarea>
+						<textarea name="content" maxlength="1200"
+						class="form-control" id="exampleTextarea" placeholder="내용을 입력해 주세요"
+						style="width: 100%; height: 400px; resize: none; border: solid 2px; "></textarea>
 					</td>
 				</tr>
 			</table>
-			<br><hr width="90%" style="border-style: solid; border-color: blue;">
-			<input type="submit" value="작성완료">
-			<input type="button" value="취소" onclick="return_List();">
+			
+			<br><hr width="90%" style="border: solid 1px;">
+			<input type="submit" value="작성완료" class="btn btn-primary" style="font-size: 13pt; font-weight: bold;">
+			<input type="button" value="취소" class="btn btn-secondary" onclick="return_List();" style="font-size: 13pt; font-weight: bold;">
+			
+<!-- 세션확인, 닉네임도필요 -->
+			<input type="hidden" name="sessionUserID" value="${sessionScope.userId}">
+			<input type="hidden" name="sessionNickname" value="${sessionScope.nickname}">
 			</form>
-		<!-- 등록임시 -->
 			
 		</div>
-		<div id="footer">
-			<h2>footer</h2>
-		</div>
 	</div>
+	
+	<script>
+		function return_List(){
+			if(confirm("정말로 나가시겠습니까?\n작성중이던 내용은 삭제됩니다")){
+				location.href="FreeBoard_List.do"
+			}
+		}
+	</script>
 	
 </body>
 </html>

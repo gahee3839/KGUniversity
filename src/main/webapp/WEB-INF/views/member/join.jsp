@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value ="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <jsp:include page="../include/header.jsp" />
@@ -13,7 +15,7 @@
 	<br><br>
 	<div class="col-sm-7" style="text-align:center;">
 	<h2>회원등록폼</h2>
-	<form action="/www/member/insertUser.do" onsubmit="return validate()" method="post">
+	<form action="${path}/member/insertUser.do" onsubmit="return validate()" method="post">
 		<table class="table table-hover">
 		<tr>
 			<th>아이디</th>
@@ -62,7 +64,7 @@
 		<tr>
 			<td colspan="2">
 				<input type="submit" id="joinSubmit" class="btn btn-primary" name="joinSubmit" value="가입">
-		<a href="/www/member/login.do"><input type="button" class="btn btn-secondary" value="취소"></a>
+		<a href="${path}/member/login.do"><input type="button" class="btn btn-secondary" value="취소"></a>
 			</td>
 		</tr>
 			
@@ -84,7 +86,7 @@
 		
 		$.ajax({
 			type: 'GET',
-			url: '/www/member/idChk.do?userId='+userId,
+			url: '${path}/member/idChk.do?userId='+userId,
 			success: function(result) {
 				if(result == 1){
 					ckval[0] = false;
@@ -172,16 +174,16 @@ $('#email').blur(function(){
 	
 	$.ajax({
 		type: 'GET',
-		url: '/www/member/emailChk.do?email='+email,
+		url: '${path}/member/emailChk.do?email='+email,
 		success: function(result) {
 			if(result == 1){
-				ckval[0] = false;
+				ckval[3] = false;
 				$("#email").css('border','3px solid red');
 				$('#emailChkMsg').text('이미 사용중인 이메일입니다.');
 				$('#emailChkMsg').css('color','red');
 			}else{
 				if(emailRE.test(email)){
-					ckval[0] = true;
+					ckval[3] = true;
 					$("#email").css('border','3px solid green');
 					$('#emailChkMsg').text('');
 					$('#emailChkMsg').css('color','green');
@@ -202,7 +204,7 @@ $('#nickname').blur(function(){
 		var nickname = $("#nickname").val();
 		$.ajax({
 			type: 'GET',
-			url: '/www/member/nickChk.do?nickname='+nickname,
+			url: '${path}/member/nickChk.do?nickname='+nickname,
 			success: function(result) {
 				if(result == 1){
 					ckval[4] = false;

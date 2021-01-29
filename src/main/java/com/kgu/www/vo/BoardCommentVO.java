@@ -2,20 +2,25 @@ package com.kgu.www.vo;
 
 public class BoardCommentVO {
 	private int contentNum;
-	private int FBC_seq;
-	private String id;
-	private String nickname;
-	private String fbComment;
+	private int commentSeq;
+	private String userID;
+	private String userNickname;
+	private String boardComment;
 	private String regDate;
 	private String commentPW;
 	
 	public BoardCommentVO() {}
-	public BoardCommentVO(int contentNum, String id, String nickname, String fbComment, String regDate, String commentPW) {
+	public BoardCommentVO(int contentNum, String userID, String userNickname, String boardComment, String regDate, String commentPW) {
 		this.contentNum = contentNum;
-		this.id = id;
-		this.nickname = nickname;
-		this.fbComment = fbComment;
+		this.userID = userID;
+		this.userNickname = userNickname;
+		this.boardComment = boardComment;
 		this.regDate = regDate;
+		this.commentPW = commentPW;
+	}
+	public BoardCommentVO(int commentSeq, String boardComment, String commentPW) {
+		this.commentSeq = commentSeq;
+		this.boardComment = boardComment;
 		this.commentPW = commentPW;
 	}
 	
@@ -26,29 +31,55 @@ public class BoardCommentVO {
 	public void setContentNum(int contentNum) {
 		this.contentNum = contentNum;
 	}
+	
+	//댓글번호
+	//자유게시판 댓글번호 getter/setter
 	public int getFBC_seq() {
-		return FBC_seq;
+		return commentSeq;
 	}
-	public void setFBC_seq(int fBC_seq) {
-		FBC_seq = fBC_seq;
+	public void setFBC_seq(int commentSeq) {
+		this.commentSeq = commentSeq;
 	}
-	public String getId() {
-		return id;
+	//공지사항 댓글번호 getter/setter
+	public int getNTC_seq() {
+		return commentSeq;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setNTC_seq(int commentSeq) {
+		this.commentSeq = commentSeq;
 	}
-	public String getNickname() {
-		return nickname;
+	//질문게시판 댓글번호 getter/setter
+	public int getIBC_seq() {
+		return commentSeq;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setIBC_seq(int commentSeq) {
+		this.commentSeq = commentSeq;
 	}
-	public String getFbComment() {
-		return fbComment;
+	//동아리게시판 댓글번호 getter/setter
+	public int getCBC_seq() {
+		return commentSeq;
 	}
-	public void setFbComment(String fbComment) {
-		this.fbComment = fbComment;
+	public void setCBC_seq(int commentSeq) {
+		this.commentSeq = commentSeq;
+	}
+	//댓글번호-end
+	
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	public String getUserNickname() {
+		return userNickname;
+	}
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+	public String getBoardComment() {
+		return boardComment;
+	}
+	public void setBoardComment(String boardComment) {
+		this.boardComment = boardComment;
 	}
 	public String getRegDate() {
 		return regDate;

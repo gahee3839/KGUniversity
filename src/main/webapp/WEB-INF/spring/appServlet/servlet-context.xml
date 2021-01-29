@@ -40,10 +40,6 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="20971520" />
 	</beans:bean>
-	<beans:bean id="boardUploadPath" class="java.lang.String">
-		<beans:constructor-arg
-			value="C:\Users\skyra\Desktop\K\스터디\ITBANK\자바 웹개발\[[프로젝트4 - KG University]]\Project4_workspace\KG_University\src\main\webapp\resources\boardImg" />
-	</beans:bean>
 	<!-- 2021.01.20 권태영-end -->
 
 	<!-- 2021.01.20 손혜지 -->
@@ -67,6 +63,9 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/book/bookAll.do" />
+			<mapping path="/FreeBoard_List.do" />
+			<mapping path="/InfoBoard_List.do" />
+			<mapping path="/ClubBoard_List.do" />
 			<!-- <exclude-mapping path="/www/member/log*.do" /> -->
 			<beans:bean class="com.kgu.www.utils.LoginInterceptor" />
 		</interceptor>

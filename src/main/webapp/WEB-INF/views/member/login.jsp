@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value ="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <jsp:include page="../include/header.jsp" />
 <html>
@@ -33,7 +34,7 @@
 			<h1>로그인</h1>
 			<hr>
 			<br><br>
-			<form name="loginForm" action="/www/member/loginChk.do" method="post" onsubmit="return validate()">
+			<form name="loginForm" action="${path}/member/loginChk.do" method="post" onsubmit="return validate()">
 				<table class="table" style="margin-left: auto; margin-right: auto;">
 					<tr>			
 						<td>아이디</td>
@@ -51,8 +52,8 @@
 					</tr>
 				</table>
 			</form>
-			아직 회원이 아니신가요?<a href="/www/member/join.do">회원가입</a><br>
-			<a href="/www/member/find1.do">아이디찾기</a>/<a href="/www/member/find2.do">비밀번호찾기</a>
+			아직 회원이 아니신가요?<a href="${path}/member/join.do">회원가입</a><br>
+			<a href="${path}/member/find1.do">아이디찾기</a>/<a href="${path}/member/find2.do">비밀번호찾기</a>
 		</div>
 	</div>
 	<c:if test="${msg=='failure'}">

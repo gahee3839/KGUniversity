@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value ="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <jsp:include page="../include/header.jsp" />
@@ -16,7 +18,7 @@
 	<h1>비밀번호변경</h1>
 	<br>
 	<div class="row">
-	<form action="/www/member/updatePw.do" onsubmit="return validate()" method="POST" style="margin: auto; text-align: center;">
+	<form action="${path}/member/updatePw.do" onsubmit="return validate()" method="POST" style="margin: auto; text-align: center;">
 		<div class="form-group row" >
 		<input type="hidden" id="userId" name ="userId" value="${sessionScope.userId}">
 		<label>현재비밀번호</label> &nbsp;&nbsp; 
@@ -31,7 +33,7 @@
 		</div>
 		<br><br>
 		<input type="submit" class="btn btn-primary" id="updatePwSubmit" value="비밀번호 변경">
-		<a href="/www/member/mypage.do?userId=${sessionScope.userId}"><input type="button" class="btn btn-secondary" value="취소" ></a>
+		<a href="${path}/member/mypage.do?userId=${sessionScope.userId}"><input type="button" class="btn btn-secondary" value="취소" ></a>
 	</form>
 	</div>
 </div>
@@ -46,7 +48,7 @@ var ckval = new Array(2).fill(false);
 		var inputPw = $("#oldPw").val();
 		$.ajax({
 			type:"POST",
-			url:"/www/member/pwChk.do",
+			url:"${path}/member/pwChk.do",
 			data:{
 				userId: userId,
 				inputPw: inputPw

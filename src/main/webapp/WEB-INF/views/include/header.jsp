@@ -26,7 +26,7 @@
 %>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">KGUNIVERSITY</a>
+  <a class="navbar-brand" href="${path}/">KGUNIVERSITY</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -34,32 +34,38 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="../mainScreen.jsp">Home
+        <a class="nav-link" href="${path}/">Home
           <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">공지사항</a>
+        <a class="nav-link" href="${path}/Notice_List.do">공지사항</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">게시판</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">자유게시판</a>
-          <a class="dropdown-item" href="#">정보게시판</a>
-          <a class="dropdown-item" href="#">동아리</a>
-          <a class="dropdown-item" href="${path}/book/bookAll.do?user_id=<%=user_id%>">학생서점</a>
-          <a class="dropdown-item" href="#">학생장터</a>
+          <a class="dropdown-item" href="${path}/FreeBoard_List.do">자유게시판</a>
+          <a class="dropdown-item" href="${path}/InfoBoard_List.do">정보게시판</a>
+          <a class="dropdown-item" href="${path}/ClubBoard_List.do">동아리</a>
+          
         </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="${path}/book/bookAll.do?user_id=<%=user_id%>">학생서점</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">학생장터</a>
+      </li>
+
          <%if(user_id==null) { %>
       	<li class="nav-item">
         	<a class="nav-link" href="${path}/member/login.do">로그인</a>
       	</li>
       
       <% } else if (!user_id.equals("bookadmin")) { %>
-      	<li class="nav-item">
+      <%-- 	<li class="nav-item">
       		<a class = "nav-link" href = "${path}/book/userPurchase.do?user_id=<%=user_id%>">구매 목록</a>
-      	</li>
+      	</li> --%>
       	<li class="nav-item">
       		<a class="nav-link" href="/www/member/mypage.do?userId=<%=user_id%>">마이페이지</a>
       	</li>

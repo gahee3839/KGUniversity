@@ -5,11 +5,29 @@ public class FreeBoardVO {
 	private String type;
 	private String title;
 	private String content;
-	private String writer;
+	private String userID;
+	private String userNickname;
 	private String regDate;
+	private String modifyDate;
 	private int hit;
 	private int commentCnt;
+	private String contentPW;
+	private String imgName;
 	
+	
+	public FreeBoardVO() {}
+	public FreeBoardVO(int FBN_seq, String type, String title, String content, String userID, String userNickname, String regDate, String modifyDate, String contentPW, String imgName) {
+		this.FBN_seq = FBN_seq;
+		this.type = type;
+		this.title = title;
+		this.content = content;
+		this.userID = userID;
+		this.userNickname = userNickname;
+		this.regDate = regDate;
+		this.modifyDate = modifyDate;
+		this.contentPW = contentPW;
+		this.imgName = imgName;
+	}
 	
 	public int getFBN_seq() {
 		return FBN_seq;
@@ -35,17 +53,29 @@ public class FreeBoardVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getWriter() {
-		return writer;
+	public String getUserID() {
+		return userID;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	public String getUserNickname() {
+		return userNickname;
+	}
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
 	}
 	public String getRegDate() {
 		return regDate;
 	}
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
+	}
+	public String getModifyDate() {
+		return modifyDate;
+	}
+	public void setModifyDate(String modifyDate) {
+		this.modifyDate = modifyDate;
 	}
 	public int getHit() {
 		return hit;
@@ -58,5 +88,17 @@ public class FreeBoardVO {
 	}
 	public void setCommentCnt(int commentCnt) {
 		this.commentCnt = commentCnt;
+	}
+	public String getContentPW() {
+		return contentPW;
+	}
+	public void setContentPW(String contentPW) {
+		this.contentPW = contentPW;
+	}
+	public String getImgName() {
+		return imgName;
+	}
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
 	}
 }

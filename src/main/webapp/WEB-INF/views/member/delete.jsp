@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value ="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <jsp:include page="../include/header.jsp" />
@@ -21,7 +23,7 @@
 				회원탈퇴시 해당 계정의 개인정보는 모두 삭제처리되며,<br> 탈퇴후에는 복구가 불가능합니다.<br>
 			</p>
 			<br>
-	<form action="/www/member/deleteUser.do" class="form-control" method="post">
+	<form action="${path}/member/deleteUser.do" class="form-control" method="post">
 			<input type="hidden" id="userId" name="userId" value="${sessionScope.userId}">
 				<label>비밀번호</label>&nbsp;&nbsp; 
 				<input type="password" id="userPw" name="userPw" required>
@@ -29,7 +31,7 @@
 				<div id="pwChkMsg"></div>
 				<br><br>
 				<input type="submit" class="btn btn-danger" value="회원탈퇴"  id="deleteSubmit" onclick="return confirm('정말 탈퇴하시겠습니까?')" disabled>
-				<a href="/www/member/mypage.do?userId=${sessionScope.userId}"><input type="button" class="btn btn-secondary" value="취소" ></a>
+				<a href="${path}/member/mypage.do?userId=${sessionScope.userId}"><input type="button" class="btn btn-secondary" value="취소" ></a>
 		
 	</form> 
 	</div>	
@@ -40,7 +42,7 @@
 		var inputPw = $("#userPw").val();
 		$.ajax({
 			type:"POST",
-			url:"/www/member/pwChk.do",
+			url:"${path}/member/pwChk.do",
 			data:{
 				userId: userId,
 				inputPw: inputPw

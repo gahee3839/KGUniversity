@@ -26,8 +26,8 @@
 	
 	<!-- 회원가입 -->
 	<insert id="insertMember">
-		INSERT INTO member (userId, userPw, userName, email, nickname, major)
-		VALUES (#{userId}, #{userPw}, #{userName}, #{email}, #{nickname}, #{major})
+		INSERT INTO member (userId, userPw, userName, email, nickname)
+		VALUES (#{userId}, #{userPw}, #{userName}, #{email}, #{nickname})
 	</insert>
 	
 	<!-- 아이디 중복체크 -->

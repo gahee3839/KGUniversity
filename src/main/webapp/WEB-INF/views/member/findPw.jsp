@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value ="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <jsp:include page="../include/header.jsp" />
@@ -31,9 +33,9 @@
 		<div id="findResult"></div>
 		<br>
 		<br> 
-		<a href="/www/member/login.do"><input type="button"  class="btn btn-success" value="로그인"></a> 
-		<a href="/www/member/join.do"><input type="button" class="btn btn-info" value="회원가입"></a>
-		<a href="/www/member/find1.do"><input type="button" class="btn btn-secondary" value="아이디찾기"></a>
+		<a href="${path}/member/login.do"><input type="button"  class="btn btn-success" value="로그인"></a> 
+		<a href="${path}/member/join.do"><input type="button" class="btn btn-info" value="회원가입"></a>
+		<a href="${path}/member/find1.do"><input type="button" class="btn btn-secondary" value="아이디찾기"></a>
 	</div>
 
 	<script type="text/javascript">
@@ -54,7 +56,7 @@
 		
 		$.ajax({
 			type: 'POST',
-			url: '/www/member/findPw.do',
+			url: '${path}/member/findPw.do',
 			data:{
 				userId: userId,
 				email: email

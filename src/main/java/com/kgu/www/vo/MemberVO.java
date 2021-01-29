@@ -17,7 +17,7 @@ public class MemberVO {
 	
 	
 	
-	public MemberVO(String userId, String userPw, String userName, String email, String nickname, String major,
+	public MemberVO(String userId, String userPw, String userName, String email, String nickname,
 			Date joinDate, int verification) {
 		super();
 		this.userId = userId;
@@ -25,7 +25,6 @@ public class MemberVO {
 		this.userName = userName;
 		this.email = email;
 		this.nickname = nickname;
-		this.major = major;
 		this.joinDate = joinDate;
 		this.verification = verification;
 	}

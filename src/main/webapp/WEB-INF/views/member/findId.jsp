@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value ="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <jsp:include page="../include/header.jsp" />
@@ -28,9 +30,9 @@
 		<div id="findResult"></div>
 		<br>
 		<br> 
-		<a href="/www/member/login.do"><input type="button" class="btn btn-success" value="로그인"></a> 
-		<a href="/www/member/join.do"><input type="button" class="btn btn-info" value="회원가입"></a> 
-		<a href="/www/member/find2.do"><input type="button" class="btn btn-secondary" value="비밀번호찾기"></a>
+		<a href="${path}/member/login.do"><input type="button" class="btn btn-success" value="로그인"></a> 
+		<a href="${path}/member/join.do"><input type="button" class="btn btn-info" value="회원가입"></a> 
+		<a href="${path}/member/find2.do"><input type="button" class="btn btn-secondary" value="비밀번호찾기"></a>
 	</div>
 	<script type="text/javascript">
 	$('#findIdBtn').click(function(){
@@ -43,7 +45,7 @@
 		}
 		$.ajax({
 			type: 'POST',
-			url: '/www/member/findId.do',
+			url: '${path}/member/findId.do',
 			data:{
 				email: email
 			},

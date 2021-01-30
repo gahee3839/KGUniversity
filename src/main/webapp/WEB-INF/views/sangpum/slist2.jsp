@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
+<jsp:include page="../include/header.jsp" />
 <html>
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
@@ -28,11 +29,8 @@
 	
 
 <body>
-
-<jsp:include page="../include/header.jsp" />
 	<br>
 	<br>
-
 <h2>게시판</h2>
 <div id="outter">
 	<table class="table table-hover">

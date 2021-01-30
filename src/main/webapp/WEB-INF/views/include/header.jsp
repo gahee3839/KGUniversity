@@ -54,7 +54,7 @@
         <a class="nav-link" href="${path}/book/bookAll.do?user_id=<%=user_id%>">학생서점</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">학생장터</a>
+        <a class="nav-link" href="${path}/boardList">학생장터</a>
       </li>
 
          <%if(user_id==null) { %>

@@ -7,8 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 제이쿼리 -->
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>중고장터 목록</title>
 </head>
@@ -30,9 +29,13 @@
 
 <body>
 
+<jsp:include page="../include/header.jsp" />
+	<br>
+	<br>
+
 <h2>게시판</h2>
 <div id="outter">
-	<table border ="1">
+	<table class="table table-hover">
 		<tr>
 				<td>NO.</td>
 				<td width="50%">제목</td>
@@ -54,24 +57,27 @@
 
 <form>
 <div id ="outter" class="search">
-  <select name="searchType">
+<select class="custom-select" name="searchType" style="width:100px;height:40px;">
       <option value="t">제목</option>
       <option value="c">내용</option>
       <option value="i">작성자</option>
   </select>
   
   <input type="text" name="Keyword" /> 
-  <button type="submit">검색</button>
+  <button type="submit" class="btn btn-primary">검색</button>
+  <button type="button" style="float: right;" onclick="location.href='callwrite' " class="btn btn-primary justify-content-end">게시물 작성</button>
+    <button type="button" style="float: right;" onclick="location.href='boardList' " class="btn btn-primary justify-content-end">목록으로</button>
    </div>
     </form>
 
-  <a href="callwrite" style="align-content: right">게시물 작성</a>
+  
  
 
 
-<div style="display: block; text-align: center;">		
+<div style="display: block; text-align: center; margin: auto;">	
+	  <ul class="pagination justify-content-center" >	
 		<c:if test="${paging.startPage != 1 }">
-			<a href="/boardList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+			<a class="page-link" href="/boardList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
 		</c:if>
 		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 			<c:choose>
@@ -79,12 +85,12 @@
 					<b>${p }</b>
 				</c:when>
 				<c:when test="${p != paging.nowPage }">
-					<a href="/boardList?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+					<a class="page-link" href="/boardList?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage != paging.lastPage}">
-			<a href="/boardList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+			<a class="page-link" href="/boardList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 		</c:if>
 	</div>
 	

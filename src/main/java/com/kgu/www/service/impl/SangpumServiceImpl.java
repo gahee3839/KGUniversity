@@ -1,9 +1,7 @@
 package com.kgu.www.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kgu.www.service.SangpumService;
 import com.kgu.www.service.dao.SangpumDAO;
+import com.kgu.www.vo.CommVO;
 import com.kgu.www.vo.PagingVO;
 import com.kgu.www.vo.SangpumVO;
 
@@ -52,8 +51,8 @@ public class SangpumServiceImpl implements SangpumService {
 	}
 	
 	@Override
-	public int count() {
-		return sangpumDAO.count();
+	public int count(PagingVO vo) {
+		return sangpumDAO.count(vo);
 	}
 
 
@@ -63,7 +62,26 @@ public class SangpumServiceImpl implements SangpumService {
 		// TODO Auto-generated method stub
 		return sangpumDAO.selectBoard(vo);
 	}
+
+
+
+
 	
+	@Override
+	public void insertComm(CommVO com) {
+		sangpumDAO.insertComm(com);
+		
+	}
+
+
+
+	@Override
+	public ArrayList<CommVO> CommAll(int bno) {
+		// TODO Auto-generated method stub
+		return sangpumDAO.CommAll(bno);
+	}
+
+
 
 	
 

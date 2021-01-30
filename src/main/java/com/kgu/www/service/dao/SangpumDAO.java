@@ -2,6 +2,7 @@ package com.kgu.www.service.dao;
 
 import java.util.ArrayList;
 
+import com.kgu.www.vo.CommVO;
 import com.kgu.www.vo.PagingVO;
 import com.kgu.www.vo.SangpumVO;
 
@@ -22,8 +23,15 @@ public interface SangpumDAO {
 	public boolean SangpumDel(int bno);
 	
 	//게시글 개수
-	public int count();
+	public int count(PagingVO vo);
 	
 	//게시글 목록+페이징
 	public ArrayList<SangpumVO> selectBoard(PagingVO vo);
+
+	//댓글 등록
+	public void insertComm(CommVO com);
+	
+	//댓글 조회
+	public ArrayList<CommVO> CommAll(int bno);
+
 }

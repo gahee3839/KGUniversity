@@ -3,18 +3,23 @@ package com.kgu.www;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kgu.www.service.SangpumService;
 import com.kgu.www.utils.UploadFileUtils;
+import com.kgu.www.vo.CommVO;
 import com.kgu.www.vo.PagingVO;
 import com.kgu.www.vo.SangpumVO;
 
@@ -33,23 +38,16 @@ public class SangpumController {
 	public String SangpumList(Model model) {
 		ArrayList<SangpumVO> slist=sangpumService.SangpumAll();
 		model.addAttribute("slist",slist);			
-//		return "slist";
 		return "sangpum/slist";
 	}
 	
 	//글쓰기 페이지 부르기
 	@RequestMapping(value="/callwrite")
 	public String SangpumWrite() {
-//		return "swrite";
 		return "sangpum/swrite";
 	}
 	
-	//게시판 글보기
-	/*@RequestMapping(value="/SangpumView")
-	public String SangpumView(int bno,Model model) {
-		model.addAttribute("vo",sangpumService.view(bno));
-		return "sview";
-	}*/
+
 	
 	//게시글 insert
 	@RequestMapping(value="/SangpumInsert")
@@ -74,13 +72,35 @@ public class SangpumController {
 	
 	//게시글 상세보기
 	@RequestMapping(value="/detail")
-	public String SangpumDetail(Model model,@RequestParam("bno")int bno) {
-		
+	public String SangpumDetail(Model model,@RequestParam("bno")int bno,CommVO com,HttpServletRequest request) {
 		model.addAttribute("Detail",sangpumService.SangpumDetail(bno));
 		sangpumService.plusCnt(bno); //조회수 올리기
-//		return "sview";
 		return "sangpum/sview";
 	}
+	
+	//댓글 목록
+	@ResponseBody
+	@RequestMapping(value="/commList")
+	public List<CommVO> getCommList(Model model,@RequestParam("bno")int bno){
+		ArrayList<CommVO> clist=sangpumService.CommAll(bno);
+		model.addAttribute("Detail",sangpumService.SangpumDetail(bno));
+		return clist;
+		
+		
+	}
+	
+	//댓글 등록
+	@ResponseBody
+	@RequestMapping(value="/commInsert")
+	public void postCommInsert(int bno, String ctext, String cid,CommVO com){
+		com.setBno(bno);
+		com.setCid(cid);
+		com.setCtext(ctext);
+		sangpumService.insertComm(com);	
+	}
+	
+	
+	
 	
 	//게시글 삭제
 	@RequestMapping(value="/delete")
@@ -98,9 +118,11 @@ public class SangpumController {
 		
 		String Keyword = request.getParameter("Keyword");
 		String searchType= request.getParameter("searchType");
+		
+
 
 		//게시물 총 개수
-		int total = sangpumService.count();
+		int total = sangpumService.count(vo);
 		
 		if(nowPage==null&&cntPerPage == null) {
 			nowPage = "1";

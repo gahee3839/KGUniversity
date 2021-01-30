@@ -56,7 +56,7 @@
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
-	<!-- 검색기능  -->
+	<!-- 검색어 기능  -->
 	<sql id="search">
 		<!-- 검색어가 존재하는 경우에만 검색을 실행한다 -->
 	<if test="Keyword != null and Keyword != ''.toString()">
@@ -69,6 +69,21 @@
 			AND ID LIKE '%' || #{Keyword} || '%'</if>			
 		</if>
 	</sql>
+	
+	
+	<!-- 댓글 등록 -->
+	<insert id="insertComm" parameterType="com.kgu.www.vo.CommVO">
+	insert into COMM (bno,cid,cno,ctext)
+	values(#{bno},#{cid},commseq.nextval,#{ctext})
+	</insert>
+	
+	<!-- 댓글 리스트 출력 -->
+	<select id="CommAll" resultType="com.kgu.www.vo.CommVO">
+		SELECT *
+		FROM COMM
+		WHERE BNO = #{bno }
+		ORDER BY BNO DESC
+	</select>
 	
 	
 

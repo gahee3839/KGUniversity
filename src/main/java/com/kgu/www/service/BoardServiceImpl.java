@@ -25,7 +25,7 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<FreeBoardVO> FreeboardALL(BoardPagingVO pagingVO) {
 		return kguBoardDAO.FreeboardALL(pagingVO);
 	}
-
+	
 	@Override
 	public FreeBoardVO getFreeboardContent(int contentNum) {
 		return kguBoardDAO.getFreeboardContent(contentNum);
@@ -294,4 +294,30 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	//***** 동아리게시판-end *****
+	
+	
+	//***** 홈페이지 *****
+
+	@Override
+	public ArrayList<FreeBoardVO> freeHome() {
+		return kguBoardDAO.freeHome();
+	}
+	
+	@Override
+	public ArrayList<NoticeVO> noticeHome() {
+		return kguBoardDAO.noticeHome();
+	}
+	
+	@Override
+	public ArrayList<InfoBoardVO> infoHome() {
+		return kguBoardDAO.infoHome();
+	}
+	
+	@Override
+	public ArrayList<ClubBoardVO> clubHome() {
+		return kguBoardDAO.clubHome();
+	}
+	
+	//***** 홈페이지-end *****
+	
 }

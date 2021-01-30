@@ -121,7 +121,7 @@ public class BookDAOTest {
 		logger.info("searched book count" + bdao.countSearchedPurchase(up));
 	}*/
 	
-	@Test //책 이름 중복확인
+	/*@Test //책 이름 중복확인
 	public void bookChk() throws Exception { 
 		BookVO bvo = new BookVO();
 		String book_name = "Check";
@@ -129,5 +129,5 @@ public class BookDAOTest {
 		int cnt = bdao.bookChk(book_name);
 		logger.info("book count : "+bdao.bookChk(book_name));
 		
-	}
+	}*/
 }

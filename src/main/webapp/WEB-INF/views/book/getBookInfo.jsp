@@ -61,7 +61,7 @@
 	<jsp:include page="../include/header.jsp" />
 	<br>
 	<br>
-<% if(user_id != null) {%>
+<%-- <% if(user_id != null) {%> --%>
 <div class="all" align="center">
 <div class="container2" >
 <div align="center">
@@ -179,8 +179,8 @@
 		</div>
  	   </div>
  	  </div>
-	<%} %>
-<%} else { %>
+ 	<%} %>
+<%-- <%} else { %>
 <div class="all" align="center">
 <div class="container2" >
 <div align="center">
@@ -241,6 +241,6 @@
 		</form>
 </div>
 	<%}%>
-
+  --%>
 </body>
 </html>

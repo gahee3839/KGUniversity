@@ -74,4 +74,12 @@ public interface BoardDAO {
 	void plusClubboardcommentCnt(int contentNum);					//댓글수증가
 	void minusClubboardCommentCnt(int contentNum);					//댓글수감소
 	//동아리게시판-end
+	
+	//홈페이지
+	ArrayList<FreeBoardVO> freeHome();								//자유게시판
+	ArrayList<NoticeVO> noticeHome();								//공지사항
+	ArrayList<InfoBoardVO> infoHome();								//정보게시판
+	ArrayList<ClubBoardVO> clubHome();								//동아리
+	//홈페이지-end
+	
 }

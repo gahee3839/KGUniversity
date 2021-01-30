@@ -26,10 +26,10 @@
 				WHERE lower(title) like '%'||#{searchKeyword}||'%'
 			</when>
 			<when test="searchType=='writer'">
-				WHERE writer lower(title) '%'||#{searchKeyword}||'%'
+				WHERE lower(writer) '%'||#{searchKeyword}||'%'
 			</when>
 			<when test="searchType=='content'">
-				WHERE content lower(title) '%'||#{searchKeyword}||'%'
+				WHERE lower(content) '%'||#{searchKeyword}||'%'
 			</when>
 			<otherwise>
 				WHERE title like '%%'
@@ -37,16 +37,17 @@
 		</choose>
 		ORDER BY FBN_seq desc
 	</select>
+	
 	<!-- <sql id="boardSearch">
 		<choose>
 			<when test="searchType=='title'">
 				WHERE lower(title) like '%'||#{searchKeyword}||'%'
 			</when>
 			<when test="searchType=='writer'">
-				WHERE writer lower(title) '%'||#{searchKeyword}||'%'
+				WHERE lower(writer) '%'||#{searchKeyword}||'%'
 			</when>
 			<when test="searchType=='content'">
-				WHERE content lower(title) '%'||#{searchKeyword}||'%'
+				WHERE lower(content) '%'||#{searchKeyword}||'%'
 			</when>
 			<otherwise>
 				WHERE title like '%%'
@@ -208,10 +209,10 @@
 				WHERE lower(title) like '%'||#{searchKeyword}||'%'
 			</when>
 			<when test="searchType=='writer'">
-				WHERE writer lower(title) '%'||#{searchKeyword}||'%'
+				WHERE lower(writer) '%'||#{searchKeyword}||'%'
 			</when>
 			<when test="searchType=='content'">
-				WHERE content lower(title) '%'||#{searchKeyword}||'%'
+				WHERE lower(content) '%'||#{searchKeyword}||'%'
 			</when>
 			<otherwise>
 				WHERE title like '%%'
@@ -374,10 +375,10 @@
 				WHERE lower(title) like '%'||#{searchKeyword}||'%'
 			</when>
 			<when test="searchType=='writer'">
-				WHERE writer lower(title) '%'||#{searchKeyword}||'%'
+				WHERE lower(writer) '%'||#{searchKeyword}||'%'
 			</when>
 			<when test="searchType=='content'">
-				WHERE content lower(title) '%'||#{searchKeyword}||'%'
+				WHERE lower(content) '%'||#{searchKeyword}||'%'
 			</when>
 			<otherwise>
 				WHERE title like '%%'
@@ -541,10 +542,10 @@
 				WHERE lower(title) like '%'||#{searchKeyword}||'%'
 			</when>
 			<when test="searchType=='writer'">
-				WHERE writer lower(title) '%'||#{searchKeyword}||'%'
+				WHERE lower(writer) '%'||#{searchKeyword}||'%'
 			</when>
 			<when test="searchType=='content'">
-				WHERE content lower(title) '%'||#{searchKeyword}||'%'
+				WHERE lower(content) '%'||#{searchKeyword}||'%'
 			</when>
 			<otherwise>
 				WHERE title like '%%'
@@ -684,5 +685,84 @@
 	
 	<!--### 동아리게시판-end ### -->
 	
+	<!--### 홈페이지 ###  -->
+	<!-- 자유게시판 홈페이지  -->
+	<select id = "freeHome" resultType = "freeBoardVO" >
+		SELECT
+			FBN_seq,
+			type,
+			title,
+			content,
+			userID,
+			userNickname,
+			regDate,
+			modifyDate,
+			hit,
+			commentCnt,
+			contentPW,
+			imgName
+		FROM Freeboard_List
+		ORDER BY FBN_seq DESC
+	</select>
+	
+	<!-- 공지사항 홈페이지  -->
+	<select id="noticeHome" resultType="noticeVO">
+		SELECT
+			NTN_seq,
+			type,
+			title,
+			content,
+			userID,
+			userNickname,
+			regDate,
+			modifyDate,
+			hit,
+			commentCnt,
+			contentPW,
+			imgName
+		FROM Notice_List
+		ORDER BY NTN_seq DESC
+	</select>
+	
+	<!-- 정보게시판 홈페이지  -->
+	<select id="infoHome" resultType="infoBoardVO">
+		SELECT
+			IBN_seq,
+			type,
+			title,
+			content,
+			userID,
+			userNickname,
+			regDate,
+			modifyDate,
+			hit,
+			commentCnt,
+			contentPW,
+			imgName
+		FROM Infoboard_List
+		ORDER BY IBN_seq DESC
+	</select>
+	
+	<select id="clubHome" resultType="clubBoardVO">
+		SELECT
+			CBN_seq,
+			type,
+			title,
+			content,
+			userID,
+			userNickname,
+			regDate,
+			modifyDate,
+			hit,
+			commentCnt,
+			contentPW,
+			imgName
+		FROM Clubboard_List
+		ORDER BY CBN_seq DESC
+	</select>
+	<!--### 홈페이지-end ###-->
+	
 </mapper>
+
+
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.kgu.www.Book.service.BookService;
 import com.kgu.www.service.BoardService;
 import com.kgu.www.service.MemberService;
+import com.kgu.www.service.SangpumService;
 
 ///**
 // * Handles requests for the application home page.
@@ -27,6 +28,9 @@ public class HomeController {
 	@Autowired
 	BookService bookService;
 	
+	@Autowired
+	SangpumService sangpumService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
@@ -40,6 +44,7 @@ public class HomeController {
 		model.addAttribute("notice", boardService.noticeHome());
 		model.addAttribute("info", boardService.infoHome());
 		model.addAttribute("club", boardService.clubHome());
+		model.addAttribute("sangpum", sangpumService.SangpumAll());
 		return "main";
 	}
 	

@@ -17,7 +17,7 @@ public interface SangpumDAO {
 	public SangpumVO SangpumDetail(int bno);
 	
 	//조회수 올리기
-		public boolean plusCnt(int bno);
+	public boolean plusCnt(int bno);
 		
 	//게시글 삭제
 	public boolean SangpumDel(int bno);
@@ -33,5 +33,11 @@ public interface SangpumDAO {
 	
 	//댓글 조회
 	public ArrayList<CommVO> CommAll(int bno);
+	
+	//댓글 삭제
+	public boolean deleteComm(int cno);
+	
+	//해당 게시글 댓글 삭제
+	public boolean deleteAllComm(int bno);
 
 }

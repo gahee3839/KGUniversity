@@ -90,6 +90,7 @@
 		<c:if test="${paging.endPage != paging.lastPage}">
 			<a class="page-link" href="/boardList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 		</c:if>
+		</ul>
 	</div>
 	
 	

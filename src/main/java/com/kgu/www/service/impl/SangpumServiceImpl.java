@@ -83,6 +83,22 @@ public class SangpumServiceImpl implements SangpumService {
 
 
 
+	@Override
+	public boolean deleteComm(int cno) {
+		// TODO Auto-generated method stub
+		return sangpumDAO.deleteComm(cno);
+	}
+
+
+
+	@Override
+	public boolean deleteAllComm(int bno) {
+		// TODO Auto-generated method stub
+		return sangpumDAO.deleteAllComm(bno);
+	}
+
+
+
 	
 
 }

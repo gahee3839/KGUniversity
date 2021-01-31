@@ -85,6 +85,16 @@
 		ORDER BY BNO DESC
 	</select>
 	
+	<!-- 특정 댓글 삭제 -->
+	<delete id="deleteComm" parameterType="int">
+	delete from COMMwhere cno= #{cno}
+	</delete>
+
+<!-- 해당글의 모든 댓글 삭제(글삭제용) -->
+	<delete id="deleteAllComm">
+	delete from COMMwhere bno=#{bno}
+	</delete>
+	
 	
 
 </mapper>

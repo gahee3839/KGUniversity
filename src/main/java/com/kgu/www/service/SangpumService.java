@@ -40,9 +40,13 @@ public interface SangpumService {
 
 	//댓글 조회
 	public ArrayList<CommVO> CommAll(int bno);
+	
+	//댓글 삭제
+		public boolean deleteComm(int cno);
 
 
-
+		//해당 게시글 댓글 삭제
+		public boolean deleteAllComm(int bno);
 	
 
 	

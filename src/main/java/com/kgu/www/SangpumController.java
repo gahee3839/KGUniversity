@@ -56,7 +56,7 @@ public class SangpumController {
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
 		
-		if(file != null) {
+		if(file.getOriginalFilename() != null && file.getOriginalFilename()!="") {
 			 fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 			} else {
 			 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
@@ -100,11 +100,22 @@ public class SangpumController {
 	}
 	
 	
+	//댓글삭제
+	@ResponseBody
+	@RequestMapping(value="/commDelete")
+	public void commdelete(int cno) {
+		System.out.println("삭제버튼");
+		sangpumService.deleteComm(cno);
+		
+		
+	}
+	
 	
 	
 	//게시글 삭제
 	@RequestMapping(value="/delete")
 	public String delete(@RequestParam("bno") int bno) {
+		sangpumService.deleteAllComm(bno);
 		sangpumService.SangpumDel(bno);
 		return "redirect:boardList";
 		

@@ -65,15 +65,8 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/book/bookAll.do" />
-			<mapping path="/FreeBoard_List.do" />
-			<mapping path="/InfoBoard_List.do" />
-			<mapping path="/ClubBoard_List.do" />
 			<mapping path="/boardList" />
 			<mapping path="/book/getBookInfo.do" />
-			<mapping path="/FreeBoard_Content.do" />
-			<mapping path="/Notice_Content.do" />
-			<mapping path="/InfoBoard_Content.do" />
-			<mapping path="/ClubBoard_Content.do" />
 			<mapping path="/detail" />
 			<!-- <exclude-mapping path="/www/member/log*.do" /> -->
 			<beans:bean class="com.kgu.www.utils.LoginInterceptor" />

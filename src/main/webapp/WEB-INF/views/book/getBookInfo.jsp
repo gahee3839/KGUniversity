@@ -83,7 +83,7 @@
 					 <td class="price"> ${bvo.book_price}원</td>
 				</tr>
 				<tr>
-					<th>글쓴이:&nbsp;</th>
+					<th>저자:&nbsp;</th>
 					<td>${bvo.book_writer}</td>
 				</tr>
 				<tr>

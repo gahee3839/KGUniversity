@@ -13,7 +13,7 @@
 </head>
 <body>
 	<br><br>
-	<div class="col-sm-6" style="text-align:center;">
+	<div class="col-sm-6" style="text-align:center; margin-top:auto; margin-left: auto; margin-right: auto;">
 	<h2>마이페이지</h2>
 	<br>
 	<table class="table table-hover">
@@ -41,6 +41,16 @@
 		<tr>
 			<td>책구매내역</td>
 			<td><a href="${path}/book/userPurchase.do?user_id=${vo.userId}">구매내역보기</a></td>
+		</tr>
+		<tr>
+			<td>내가쓴글</td>
+			<td><%-- <a href="${path}/MyWrite_List.do?userId=${vo.userId}">내가쓴글보기</a> --%>
+				<a href="${path}/Notice_List.do?searchType=writer&searchKeyword=${vo.nickname}">공지게시판</a><br>
+				<a href="${path}/FreeBoard_List.do?searchType=writer&searchKeyword=${vo.nickname}">자유게시판</a><br>
+				<a href="${path}/InfoBoard_List.do?searchType=writer&searchKeyword=${vo.nickname}">정보게시판</a><br>
+				<a href="${path}/ClubBoard_List.do?searchType=writer&searchKeyword=${vo.nickname}">동아리게시판</a><br>
+				<a href="${path}/boardList?searchType=i&Keyword=${vo.userId}">학생장터</a>
+			</td>
 		</tr>
 	</table>
 	<a href="${path}/member/update.do?userId=${vo.userId}">

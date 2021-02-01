@@ -31,27 +31,31 @@ public class MemberController {
 	}
 	
 	//로그인체크 후 결과에 따라 페이지이동 및 메세지전송
-	@RequestMapping("loginChk.do")
-	public ModelAndView loginChk(MemberVO vo, HttpSession session) {
-		boolean result = memberService.loginChk(vo, session);
-		ModelAndView mav = new ModelAndView();
-		if(result==true) {	//로그인체크성공(아이디와 비밀번호일치)
-			if(memberService.verifyChk(vo.getUserId())) {	//인증완료된 계정
-				session.setAttribute("userId", vo.getUserId());
-				session.setAttribute("nickname", vo.getNickname());
-				mav.setViewName("redirect:mypage.do?userId="+vo.getUserId());
-				mav.addObject("msg", "success");
-			}else {	//인증 미완료인 계정
-				mav.setViewName("member/login");
-				mav.addObject("msg", "verify failure");
-			}
-			
-		}else {	//로그인실패
-			mav.setViewName("member/login");
-			mav.addObject("msg","failure");
-		}
-		return mav;	
-	}
+	  @RequestMapping("loginChk.do")
+	   public ModelAndView loginChk(MemberVO vo, HttpSession session) {
+	      boolean result = memberService.loginChk(vo, session);
+	      ModelAndView mav = new ModelAndView();
+	      if(result==true) {   //로그인체크성공(아이디와 비밀번호일치)
+	         if(memberService.verifyChk(vo.getUserId())) {   //인증완료된 계정
+	            String userId = vo.getUserId();
+	            vo = memberService.viewMember(userId);
+	            String nickname = vo.getNickname();
+	            System.out.println("nickname");
+	            session.setAttribute("userId", userId);
+	            session.setAttribute("nickname", nickname);
+	            mav.setViewName("redirect:mypage.do?userId="+vo.getUserId());
+	            mav.addObject("msg", "success");
+	         }else {   //인증 미완료인 계정
+	            mav.setViewName("member/login");
+	            mav.addObject("msg", "verify failure");
+	         }
+	         
+	      }else {   //로그인실패
+	         mav.setViewName("member/login");
+	         mav.addObject("msg","failure");
+	      }
+	      return mav;   
+	   }  
 	
 	//로그아웃
 	@RequestMapping("logout.do")

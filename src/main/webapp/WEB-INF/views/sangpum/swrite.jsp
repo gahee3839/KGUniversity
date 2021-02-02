@@ -63,7 +63,7 @@
 </div>
         
         </div>
-            <input type="submit" value="확인">
+            <input type="submit" value="확인" class="btn btn-primary">
            </form>
         </div>
 	    

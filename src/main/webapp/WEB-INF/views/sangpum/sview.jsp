@@ -76,7 +76,7 @@ $.getJSON("commList" + "?bno=" + bno, function(data){
 <div class="outter">
 	<table class="table table-hover">
 <tr>
-			<td>제목: ${Detail.title }</td>
+			<td>제목:[${Detail.sb}] ${Detail.title }</td>
 		</tr>
 		<tr>
 			<td>

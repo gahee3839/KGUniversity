@@ -37,7 +37,7 @@
 	<form action = "search.do" method="get">
 		<select name = "searchType" id = "searchType" class = "custom-select" id = "searchType" style="width: 120px; height: 34px; font-size:10pt;">
 			<option value = "book_name" style=font-size:10pt; <c:out value = "${search.searchType eq 'book_title' ? 'selected' : ''}"/>>책 제목</option>
-			<option value = "book_writer" style=font-size:10pt; <c:out value = "${search.searchType eq 'book_writer' ? 'selected' : ''}"/>>글쓴이</option>
+			<option value = "book_writer" style=font-size:10pt; <c:out value = "${search.searchType eq 'book_writer' ? 'selected' : ''}"/>>저자</option>
 		</select>
 			<input type = "keyword" name = 'keyword' value = "${search.keyword}">
 			<font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">

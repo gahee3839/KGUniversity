@@ -55,15 +55,14 @@ public class SangpumController {
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
-		
+	
 		if(file.getOriginalFilename() != null && file.getOriginalFilename()!="") {
 			 fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 			} else {
 			 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
 			}
 
-			//vo.setIMGNAME(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-			vo.setIMGNAME(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+			vo.setIMGNAME(File.separator +"www"+File.separator+ "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 
 		sangpumService.SangpumInsert(vo);
 		

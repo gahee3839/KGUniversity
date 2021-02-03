@@ -13,40 +13,7 @@
 
 <script>
 
-//댓글 목록 가져옴 //
 
-function commList(){
-var bno = ${Detail.bno};
-$.getJSON("commList" + "?bno=" + bno, function(data){
- var str = "";
- 
-	$(data).each(function(){
-  
-	  console.log(data);
-	  
-	  var cdate = new Date(this.cdate);
-	  cdate = cdate.toLocaleString("ko-US")
-	  
-	  str += "<li data-bno='" + this.bno + "' style='margin-top:15px; margin-bottom:15px;'>";
-	  str += "<div class='userInfo'>";
-	  str += "<span class='userName'>" + this.cid+"\n" + "</span>";
-	  str += "<span class='date'>" + cdate + "</span>&nbsp;&nbsp;";
-	  if(true){
-		   	str +="<button type='button' id='CommdeleteBtn' class='badge badge-pill badge-secondary'  onclick='commDelete("+ this.cno +")'>삭제</button>";
-		  }
-	  str += "<br/>"
-	  str += "<span class='replyContent'>" + this.ctext + "</span>"
-	
-	  str += "</div>";
-	  //str += "</div>";
-	  str += "</li>";    
-	  //str += "<br/>";
-	});
- 
- $("section.commList ol").html(str);
-});
-
-}
 
 </script>
 
@@ -102,7 +69,9 @@ $.getJSON("commList" + "?bno=" + bno, function(data){
 	</table>
 	<div>
 	<input type="button" value="글 목록" class="btn btn-primary" style="float: right;" onclick="location.href='boardList';"> 
+	<c:if test="${sessionScope.userId == Detail.id }">
 	<input type="button" value="삭제" class="btn btn-primary" onclick="del(${Detail.bno})">
+	</c:if>
 	</div>
 
 </div>
@@ -113,7 +82,7 @@ $.getJSON("commList" + "?bno=" + bno, function(data){
 
 			<form role="form" method="post" autocomplete="off">
 				<input type="hidden" id="bno" value="${Detail.bno }"> <!-- 게시글번호 컨트롤러 전달용/숨겨진폼 -->
-				<input type="hidden" id="cid" value="임시아이디"> <!-- 에러 방지용 임시아이디/수정예정-->
+				<input type="hidden" id="cid" value="${sessionScope.userId }"> <!-- 에러 방지용 임시아이디/수정예정-->
 				<div class="input_area">
 					<table>
 						<tr>
@@ -131,14 +100,12 @@ $.getJSON("commList" + "?bno=" + bno, function(data){
 				
 			</form>
 		<section class="commList">
-		<!-- 댓글 작성자만 삭제 가능하도록 
-		     <c:if test="${session.id==Comm.cid }"></c:if>
-		     -->
+	
 		
 		<ol>
 		</ol>		
 		<script>
-		commList();
+		
 		</script>
 	
 
@@ -146,10 +113,50 @@ $.getJSON("commList" + "?bno=" + bno, function(data){
 	</div>
 	
 	
+<input type="hidden" id="userId" value="${sessionScope.userId }">
 
-</body>
+</body>										
 
 <script>
+commList();
+//var userId = $("#userId").val();
+var userId = '${sessionScope.userId}';
+console.log('userId!!' + userId);
+
+
+function commList(){
+var bno = ${Detail.bno};
+$.getJSON("commList" + "?bno=" + bno, function(data){
+ var str = "";
+ 
+	$(data).each(function(){
+  
+	  console.log(data);
+	  
+	  var cdate = new Date(this.cdate);
+	  cdate = cdate.toLocaleString("ko-US")
+	  
+	  str += "<li data-bno='" + this.bno + "' style='margin-top:15px; margin-bottom:15px;'>";
+	  str += "<div class='userInfo'>";
+	  str += "<span class='userName'>" + this.cid+"\n" + "</span>";
+	  str += "<span class='date'>" + cdate + "</span>&nbsp;&nbsp;";
+	  if(userId==this.cid){
+		   	str +="<button type='button' id='CommdeleteBtn' class='badge badge-pill badge-secondary'  onclick='commDelete("+ this.cno +")'>삭제</button>";
+		  }
+	  str += "<br/>"
+	  str += "<span class='replyContent'>" + this.ctext + "</span>"
+	
+	  str += "</div>";
+	  //str += "</div>";
+	  str += "</li>";    
+	  //str += "<br/>";
+	});
+ 
+ $("section.commList ol").html(str);
+});
+
+}
+
 function del(bno){
 	var chk = confirm("정말 삭제하시겠습니까?");
 	if(chk){
@@ -176,6 +183,8 @@ $("#CommBtn").click(function(){
 	   data : data,
 	   success : function(){
 	    commList();
+	    $("#ctext").val("");
+	    alert("등록되었습니다!");
 	   }
 	  });
 	 });
@@ -193,6 +202,7 @@ $("#CommBtn").click(function(){
 		   data : data,
 		   success : function(){
 		    commList();
+		    alert("삭제되었습니다!");
 		   }
 		  });
 		}

@@ -45,10 +45,10 @@
 		<tr>
 			<td>내가쓴글</td>
 			<td><%-- <a href="${path}/MyWrite_List.do?userId=${vo.userId}">내가쓴글보기</a> --%>
-				<a href="${path}/Notice_List.do?searchType=writer&searchKeyword=${vo.nickname}">공지게시판</a><br>
-				<a href="${path}/FreeBoard_List.do?searchType=writer&searchKeyword=${vo.nickname}">자유게시판</a><br>
-				<a href="${path}/InfoBoard_List.do?searchType=writer&searchKeyword=${vo.nickname}">정보게시판</a><br>
-				<a href="${path}/ClubBoard_List.do?searchType=writer&searchKeyword=${vo.nickname}">동아리게시판</a><br>
+				<a href="${path}/Notice_List.do?searchType=myWrite&searchKeyword=${vo.userId}">공지게시판</a><br>
+				<a href="${path}/FreeBoard_List.do?searchType=myWrite&searchKeyword=${vo.userId}">자유게시판</a><br>
+				<a href="${path}/InfoBoard_List.do?searchType=myWrite&searchKeyword=${vo.userId}">정보게시판</a><br>
+				<a href="${path}/ClubBoard_List.do?searchType=myWrite&searchKeyword=${vo.userId}">동아리게시판</a><br>
 				<a href="${path}/boardList?searchType=i&Keyword=${vo.userId}">학생장터</a>
 			</td>
 		</tr>

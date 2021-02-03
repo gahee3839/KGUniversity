@@ -163,8 +163,9 @@ public class MemberController {
 	
 	//회원탈퇴(db DELETE)
 	@RequestMapping(value= "deleteUser.do", method =RequestMethod.POST)
-	public String deleteUser(String userId) {
+	public String deleteUser(HttpSession session, String userId) {
 		memberService.deleteUser(userId);
+		memberService.logout(session);
 		return "member/login";
 	}
 	

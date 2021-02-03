@@ -31,6 +31,9 @@
 			<when test="searchType=='content'">
 				WHERE lower(content) like '%'||#{searchKeyword}||'%'
 			</when>
+			<when test="searchType=='myWrite'">
+				WHERE lower(userID) like '%'||#{searchKeyword}||'%'
+			</when>
 			<otherwise>
 				WHERE title like '%%'
 			</otherwise>
@@ -44,10 +47,10 @@
 				WHERE lower(title) like '%'||#{searchKeyword}||'%'
 			</when>
 			<when test="searchType=='writer'">
-				WHERE lower(writer) '%'||#{searchKeyword}||'%'
+				WHERE lower(userNickname) like '%'||#{searchKeyword}||'%'
 			</when>
 			<when test="searchType=='content'">
-				WHERE lower(content) '%'||#{searchKeyword}||'%'
+				WHERE lower(content) like '%'||#{searchKeyword}||'%'
 			</when>
 			<otherwise>
 				WHERE title like '%%'
@@ -213,6 +216,9 @@
 			</when>
 			<when test="searchType=='content'">
 				WHERE lower(content) like '%'||#{searchKeyword}||'%'
+			</when>
+			<when test="searchType=='myWrite'">
+				WHERE lower(userID) like '%'||#{searchKeyword}||'%'
 			</when>
 			<otherwise>
 				WHERE title like '%%'
@@ -380,6 +386,9 @@
 			<when test="searchType=='content'">
 				WHERE lower(content) like '%'||#{searchKeyword}||'%'
 			</when>
+			<when test="searchType=='myWrite'">
+				WHERE lower(userID) like '%'||#{searchKeyword}||'%'
+			</when>
 			<otherwise>
 				WHERE title like '%%'
 			</otherwise>
@@ -546,6 +555,9 @@
 			</when>
 			<when test="searchType=='content'">
 				WHERE lower(content) like '%'||#{searchKeyword}||'%'
+			</when>
+			<when test="searchType=='myWrite'">
+				WHERE lower(userID) like '%'||#{searchKeyword}||'%'
 			</when>
 			<otherwise>
 				WHERE title like '%%'
@@ -762,82 +774,6 @@
 	</select>
 	<!--### 홈페이지-end ###-->
 	
-	<!-- ### 내가쓴글 조회 ###-->
-<!-- 	<select id="MyWriteALL" resultType="MyWriteVO" parameterType="String">
-	SELECT *
-	FROM
-	(
-	SELECT
-	1 AS category,
-	FBN_seq AS seq,
-	title,
-	userID,
-	userNickname,
-	regDate,
-	hit,
-	commentCnt
-	FROM Freeboard_List
-	WHERE userId=#{userId}
-
-	UNION ALL
-	SELECT
-	2 AS category,
-	IBN_seq AS seq,
-	title,
-	userID,
-	userNickname,
-	regDate,
-	hit,
-	commentCnt
-	FROM Infoboard_List
-	WHERE userId=#{userId}
-
-	UNION ALL
-
-	SELECT
-	3 AS category,
-	NTN_seq AS seq,
-	title,
-	userID,
-	userNickname,
-	regDate,
-	hit,
-	commentCnt
-	FROM Notice_List
-	WHERE userId=#{userId}
-
-	UNION ALL
-
-	SELECT
-	4 AS category,
-	CBN_seq AS seq,
-	title,
-	userID,
-	userNickname,
-	regDate,
-	hit,
-	commentCnt
-	FROM Clubboard_List
-	WHERE userId=#{userId}
-	
-	UNION ALL
-	
-	SELECT
-	5 AS category,
-	BNO AS seq,
-	title,
-	'd' AS userNickname,
-	ID AS userID,
-	wrDate AS regDate,
-	viewcnt AS hit,
-	0 AS commentCnt
-	FROM SANGPUM
-	WHERE ID=#{userId}
-
-	)
-	ORDER BY regDate desc
-	</select> -->
-	<!-- ### 내가쓴글 조회-end ###-->
 </mapper>
 
 

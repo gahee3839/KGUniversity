@@ -73,6 +73,9 @@
       	<li class="nav-item">
         	<a class="nav-link" href="${path}/member/logout.do">로그아웃</a>
       	</li>
+      	<li class="nav-item">
+      			<%=user_id%>님이 로그인중입니다.
+      	</li>
       <% } else { %>
       	<li class="nav-item">
       		<a class = "nav-link" href = "${path}/book/bookInsertForm.do?user_id=<%=user_id%>">책 등록</a>

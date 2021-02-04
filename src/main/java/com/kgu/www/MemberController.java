@@ -1,5 +1,6 @@
 package com.kgu.www;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,9 +77,9 @@ public class MemberController {
 	
 	//회원가입(db INSERT)
 	@RequestMapping(value="insertUser.do", method=RequestMethod.POST )
-	public String insertUser(@ModelAttribute MemberVO vo) {
+	public String insertUser(@ModelAttribute MemberVO vo, HttpServletRequest request) {
 		memberService.insertUser(vo);
-		mailSender.mailSend(vo.getUserId(),vo.getEmail());
+		mailSender.mailSend(vo.getUserId(),vo.getEmail(),request);
 		return "member/login";
 	}
 	

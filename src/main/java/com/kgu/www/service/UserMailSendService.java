@@ -22,11 +22,11 @@ public class UserMailSendService {
 	@Autowired
 	MemberDAO memberDAO;
 	
-	public void mailSend(String userId,String email) {
+	public void mailSend(String userId,String email, HttpServletRequest request) {
 		MimeMessage mail = mailSender.createMimeMessage();
 		String htmlStr = "<h2>안녕하세요 KG_University입니다.</h2><br><br>"
 					+"<h3>"+userId+"님 회원가입을 완료하시려면 "+"<br><br><br>"
-					+"<a href='http://localhost:8081/www/member/verify.do?userId="+userId+"'>인증하기</a>버튼을 눌러주세요</h3>";
+					+"<a href='http://localhost:8081"+request.getContextPath()+"/member/verify.do?userId="+userId+"'>인증하기</a>버튼을 눌러주세요</h3>";
 		try {
 			mail.setSubject("[KG_University] KG_University 인증메일","UTF-8");
 			mail.setText(htmlStr, "UTF-8", "html");
